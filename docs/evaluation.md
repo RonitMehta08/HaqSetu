@@ -11,7 +11,7 @@ people and do not encode approval decisions.
 
 | Metric | Definition | Why a judge should care |
 | --- | --- | --- |
-| Retrieval hit rate | Expected scheme appears in top six for each case. | Measures useful discovery. |
+| Retrieval hit rate | Expected scheme appears in the top 12 for each case. | Measures useful discovery across the expanded catalogue. |
 | Citation coverage | Every returned scheme has an official URL. | Measures provenance. |
 | Evidence coverage | Every returned scheme has rule evidence and a safe status. | Measures agent reasoning. |
 | Counterfactual coverage | Cases with an unknown/failed rule surface a bounded what-if prompt. | Demonstrates the unique feature. |

@@ -119,5 +119,341 @@
     "required_documents": ["scheme-specific certificates and institute verification; confirm the current portal checklist"],
     "caveat": "This is a catalogue match only; each listed scholarship has separate eligibility and verification rules.",
     "source": {"title": "National Scholarship Portal", "url": "https://scholarships.gov.in/", "last_verified": "2025-01-15", "freshness": "manual verification required; no live lookup", "official": true}
+  },
+  {
+    "id": "pm-sym",
+    "name_en": "Pradhan Mantri Shram Yogi Maandhan (PM-SYM)",
+    "name_hi": "प्रधानमंत्री श्रम योगी मानधन (PM-SYM)",
+    "summary_en": "Voluntary contributory pension support for eligible unorganised workers aged 18–40 with income within the notified limit.",
+    "summary_hi": "अधिसूचित आय सीमा में 18–40 वर्ष के पात्र असंगठित कामगारों के लिए स्वैच्छिक अंशदायी पेंशन सहायता।",
+    "ministry": "Ministry of Labour & Employment",
+    "tags": ["pension", "unorganised worker"],
+    "keywords": ["pension", "unorganised worker", "labour", "worker", "मानधन", "पेंशन", "श्रमिक"],
+    "rules": [
+      {"id": "pm-sym-age-min", "field": "age", "op": "gte", "value": 18, "required": true},
+      {"id": "pm-sym-age-max", "field": "age", "op": "lte", "value": 40, "required": true},
+      {"id": "pm-sym-income", "field": "monthly_income", "op": "lte", "value": 15000, "required": true},
+      {"id": "pm-sym-worker", "field": "occupation", "op": "contains_any", "value": ["unorganised", "worker", "labour", "daily wage", "domestic", "street vendor", "मजदूर", "श्रमिक"], "required": true}
+    ],
+    "verification_facts": ["occupation and exclusion conditions", "age and income on the enrolment date", "bank account and contribution process"],
+    "required_documents": ["identity, age, occupation, and bank documents required by the current enrolment channel"],
+    "caveat": "This is a screening signal for a voluntary contributory pension; age, occupation, exclusions, and contribution terms must be confirmed officially.",
+    "source": {"title": "PM-SYM official portal", "url": "https://maandhan.in/", "last_verified": "2025-01-15", "freshness": "manual verification required; no live lookup", "official": true}
+  },
+  {
+    "id": "pmsby",
+    "name_en": "Pradhan Mantri Suraksha Bima Yojana (PMSBY)",
+    "name_hi": "प्रधानमंत्री सुरक्षा बीमा योजना (PMSBY)",
+    "summary_en": "Low-cost personal accident insurance for eligible account holders, subject to enrolment, age, and current policy terms.",
+    "summary_hi": "पात्र खाताधारकों के लिए कम लागत वाला व्यक्तिगत दुर्घटना बीमा; नामांकन, आयु और वर्तमान पॉलिसी शर्तें लागू हैं।",
+    "ministry": "Department of Financial Services, Ministry of Finance",
+    "tags": ["insurance", "accident cover"],
+    "keywords": ["accident", "personal accident", "insurance", "दुर्घटना", "बीमा"],
+    "rules": [
+      {"id": "pmsby-age-min", "field": "age", "op": "gte", "value": 18, "required": true},
+      {"id": "pmsby-age-max", "field": "age", "op": "lte", "value": 70, "required": true},
+      {"id": "pmsby-need", "field": "needs", "op": "list_contains_any", "value": ["accident insurance", "personal accident", "दुर्घटना", "बीमा"], "required": false}
+    ],
+    "verification_facts": ["participating account and consent for premium debit", "current enrolment window and policy terms", "age and claim conditions"],
+    "required_documents": ["bank and identity documents requested by the participating account provider"],
+    "caveat": "The profile cannot establish insurance enrolment or a future claim; confirm the current cover, premium, exclusions, and consent process with the official channel.",
+    "source": {"title": "Jan Suraksha official portal", "url": "https://jansuraksha.gov.in/", "last_verified": "2025-01-15", "freshness": "manual verification required; no live lookup", "official": true}
+  },
+  {
+    "id": "pmjjby",
+    "name_en": "Pradhan Mantri Jeevan Jyoti Bima Yojana (PMJJBY)",
+    "name_hi": "प्रधानमंत्री जीवन ज्योति बीमा योजना (PMJJBY)",
+    "summary_en": "Renewable one-year life insurance cover for eligible account holders, subject to age, consent, and current policy terms.",
+    "summary_hi": "पात्र खाताधारकों के लिए नवीकरणीय एक-वर्षीय जीवन बीमा कवर; आयु, सहमति और वर्तमान पॉलिसी शर्तें लागू हैं।",
+    "ministry": "Department of Financial Services, Ministry of Finance",
+    "tags": ["insurance", "life cover"],
+    "keywords": ["life insurance", "family protection", "insurance", "जीवन बीमा", "परिवार सुरक्षा"],
+    "rules": [
+      {"id": "pmjjby-age-min", "field": "age", "op": "gte", "value": 18, "required": true},
+      {"id": "pmjjby-age-max", "field": "age", "op": "lte", "value": 50, "required": true},
+      {"id": "pmjjby-need", "field": "needs", "op": "list_contains_any", "value": ["life insurance", "family protection", "जीवन बीमा", "बीमा"], "required": false}
+    ],
+    "verification_facts": ["participating account and consent for premium debit", "current enrolment window and policy terms", "age, coverage, and claim conditions"],
+    "required_documents": ["bank and identity documents requested by the participating account provider"],
+    "caveat": "The profile cannot establish insurance enrolment or a future claim; confirm current cover, exclusions, and consent with the official channel.",
+    "source": {"title": "Jan Suraksha official portal", "url": "https://jansuraksha.gov.in/", "last_verified": "2025-01-15", "freshness": "manual verification required; no live lookup", "official": true}
+  },
+  {
+    "id": "pm-kusum",
+    "name_en": "PM-KUSUM",
+    "name_hi": "प्रधानमंत्री किसान ऊर्जा सुरक्षा एवं उत्थान महाभियान (PM-KUSUM)",
+    "summary_en": "Support for eligible farmers and implementing agencies for decentralised solar energy and agricultural pumps under current state components.",
+    "summary_hi": "वर्तमान राज्य घटकों के अंतर्गत पात्र किसानों और कार्यान्वयन एजेंसियों के लिए विकेंद्रीकृत सौर ऊर्जा और कृषि पंप सहायता।",
+    "ministry": "Ministry of New and Renewable Energy",
+    "tags": ["farmer", "solar energy"],
+    "keywords": ["farmer", "solar pump", "irrigation", "solar energy", "किसान", "सौर पंप", "सिंचाई"],
+    "rules": [
+      {"id": "pm-kusum-farmer", "field": "occupation", "op": "contains_any", "value": ["farmer", "agricultur", "cultivator", "किसान", "कृषि"], "required": true},
+      {"id": "pm-kusum-need", "field": "needs", "op": "list_contains_any", "value": ["solar pump", "irrigation", "solar energy", "सौर पंप", "सिंचाई"], "required": false},
+      {"id": "pm-kusum-land", "field": "landholding", "op": "gt", "value": 0, "required": false}
+    ],
+    "verification_facts": ["state component and application window", "land/cultivation and pump or grid conditions", "beneficiary contribution and vendor process"],
+    "required_documents": ["state and implementing-agency documents; confirm the current component checklist"],
+    "caveat": "PM-KUSUM components, subsidies, and implementing routes vary by state; a farmer signal is not proof of sanction or subsidy approval.",
+    "source": {"title": "PM-KUSUM official portal", "url": "https://pmkusum.mnre.gov.in/", "last_verified": "2025-01-15", "freshness": "manual verification required; no live lookup", "official": true}
+  },
+  {
+    "id": "kisan-credit-card",
+    "name_en": "Kisan Credit Card (KCC)",
+    "name_hi": "किसान क्रेडिट कार्ड (KCC)",
+    "summary_en": "Farm credit access for eligible cultivators and allied-activity applicants, subject to bank appraisal and current lending rules.",
+    "summary_hi": "पात्र कृषकों और संबद्ध गतिविधि आवेदकों के लिए कृषि ऋण सुविधा; बैंक मूल्यांकन और वर्तमान ऋण शर्तें लागू हैं।",
+    "ministry": "Ministry of Agriculture & Farmers Welfare",
+    "tags": ["farmer", "farm credit"],
+    "keywords": ["farmer", "agriculture", "crop credit", "farm loan", "KCC", "किसान", "कृषि ऋण"],
+    "rules": [
+      {"id": "kcc-farmer", "field": "occupation", "op": "contains_any", "value": ["farmer", "agricultur", "cultivator", "dairy", "fisher", "किसान", "कृषि"], "required": true},
+      {"id": "kcc-need", "field": "needs", "op": "list_contains_any", "value": ["crop credit", "farm loan", "kcc", "कृषि ऋण", "किसान क्रेडिट"], "required": false},
+      {"id": "kcc-land", "field": "landholding", "op": "gt", "value": 0, "required": false}
+    ],
+    "verification_facts": ["cultivation or allied-activity record", "bank and credit assessment", "crop, scale, and repayment terms"],
+    "required_documents": ["bank and state-accepted land, cultivation, or allied-activity documents"],
+    "caveat": "A KCC screening signal is not loan approval; the participating bank decides limits, security, interest, and repayment under current rules.",
+    "source": {"title": "Kisan Credit Card official information", "url": "https://fasalrin.gov.in/", "last_verified": "2025-01-15", "freshness": "manual verification required; no live lookup", "official": true}
+  },
+  {
+    "id": "mgnrega",
+    "name_en": "Mahatma Gandhi National Rural Employment Guarantee Act (MGNREGA)",
+    "name_hi": "महात्मा गांधी राष्ट्रीय ग्रामीण रोजगार गारंटी अधिनियम (मनरेगा)",
+    "summary_en": "Rural household employment demand and wage-work route, subject to local registration, residence, and programme processes.",
+    "summary_hi": "ग्रामीण परिवारों के रोजगार मांग और मजदूरी कार्य का मार्ग; स्थानीय पंजीकरण, निवास और कार्यक्रम प्रक्रिया लागू है।",
+    "ministry": "Ministry of Rural Development",
+    "tags": ["rural work", "employment"],
+    "keywords": ["rural work", "employment", "job", "wages", "मनरेगा", "रोजगार", "काम"],
+    "rules": [
+      {"id": "mgnrega-need", "field": "needs", "op": "list_contains_any", "value": ["work", "employment", "job", "wages", "मनरेगा", "रोजगार", "काम"], "required": false},
+      {"id": "mgnrega-worker", "field": "occupation", "op": "contains_any", "value": ["daily wage", "agricultural labour", "unskilled worker", "मजदूर", "श्रमिक", "खेत मजदूर"], "required": false}
+    ],
+    "verification_facts": ["rural household and local job-card status", "work demand and gram panchayat process", "current worksite and wage records"],
+    "required_documents": ["local panchayat documents; confirm the current job-card and demand process"],
+    "caveat": "This catalogue match does not create a job card or guarantee work; the local implementing authority and current programme records control the process.",
+    "source": {"title": "MGNREGA official portal", "url": "https://nregaplus.nic.in/netnrega/MGNREGA_new/Nrega_home.aspx", "last_verified": "2025-01-15", "freshness": "manual verification required; no live lookup", "official": true}
+  },
+  {
+    "id": "e-shram",
+    "name_en": "e-Shram registration and welfare convergence",
+    "name_hi": "ई-श्रम पंजीकरण और कल्याण योजनाओं का समन्वय",
+    "summary_en": "Registration and scheme-convergence gateway for eligible unorganised workers; registration itself is not a guaranteed cash benefit.",
+    "summary_hi": "पात्र असंगठित कामगारों के लिए पंजीकरण और योजना-समन्वय का माध्यम; पंजीकरण स्वयं गारंटीकृत नकद लाभ नहीं है।",
+    "ministry": "Ministry of Labour & Employment",
+    "tags": ["unorganised worker", "registration"],
+    "keywords": ["unorganised worker", "worker", "labour", "e-shram", "श्रमिक", "मजदूर"],
+    "rules": [
+      {"id": "e-shram-age-min", "field": "age", "op": "gte", "value": 16, "required": true},
+      {"id": "e-shram-age-max", "field": "age", "op": "lte", "value": 59, "required": true},
+      {"id": "e-shram-worker", "field": "occupation", "op": "contains_any", "value": ["worker", "labour", "vendor", "driver", "domestic", "construction", "artisan", "farmer", "fisher", "श्रमिक", "मजदूर"], "required": true}
+    ],
+    "verification_facts": ["occupation and unorganised-worker status", "existing registration and mobile/account process", "which linked scheme is relevant"],
+    "required_documents": ["identity and occupation details requested by the official registration channel"],
+    "caveat": "e-Shram is a registration and convergence gateway, not a standalone promise of payment or eligibility for every linked scheme.",
+    "source": {"title": "e-Shram official portal", "url": "https://eshram.gov.in/", "last_verified": "2025-01-15", "freshness": "manual verification required; no live lookup", "official": true}
+  },
+  {
+    "id": "pm-vishwakarma",
+    "name_en": "PM Vishwakarma",
+    "name_hi": "पीएम विश्वकर्मा",
+    "summary_en": "Training, toolkit, credit, and marketing support for eligible artisans in notified traditional trades.",
+    "summary_hi": "अधिसूचित पारंपरिक शिल्पों के पात्र कारीगरों के लिए प्रशिक्षण, टूलकिट, ऋण और विपणन सहायता।",
+    "ministry": "Ministry of Micro, Small & Medium Enterprises",
+    "tags": ["artisan", "skills", "credit"],
+    "keywords": ["artisan", "craft", "toolkit", "training", "कारीगर", "शिल्प"],
+    "rules": [
+      {"id": "vishwakarma-age", "field": "age", "op": "gte", "value": 18, "required": true},
+      {"id": "vishwakarma-trade", "field": "occupation", "op": "contains_any", "value": ["carpenter", "blacksmith", "goldsmith", "potter", "sculptor", "mason", "tailor", "barber", "washer", "cobbler", "locksmith", "artisan", "कारीगर", "शिल्प"], "required": true}
+    ],
+    "verification_facts": ["notified trade and traditional occupation", "family and prior-benefit exclusions", "local verification, training, and credit stages"],
+    "required_documents": ["identity, occupation, and local verification documents listed by the current portal"],
+    "caveat": "A matching trade is only a screening signal; registration, verification, training, credit appraisal, and current programme rules still apply.",
+    "source": {"title": "PM Vishwakarma official portal", "url": "https://pmvishwakarma.gov.in/", "last_verified": "2025-01-15", "freshness": "manual verification required; no live lookup", "official": true}
+  },
+  {
+    "id": "pmegp",
+    "name_en": "Prime Minister's Employment Generation Programme (PMEGP)",
+    "name_hi": "प्रधानमंत्री रोजगार सृजन कार्यक्रम (PMEGP)",
+    "summary_en": "Credit-linked support for eligible new micro-enterprises, subject to project appraisal, margin contribution, and current guidelines.",
+    "summary_hi": "पात्र नई सूक्ष्म इकाइयों के लिए ऋण-लिंक्ड सहायता; परियोजना मूल्यांकन, मार्जिन योगदान और वर्तमान दिशानिर्देश लागू हैं।",
+    "ministry": "Ministry of Micro, Small & Medium Enterprises",
+    "tags": ["enterprise", "self-employment"],
+    "keywords": ["business", "self employment", "enterprise", "micro enterprise", "उद्यम", "स्वरोजगार"],
+    "rules": [
+      {"id": "pmegp-age", "field": "age", "op": "gte", "value": 18, "required": true},
+      {"id": "pmegp-intent", "field": "needs", "op": "list_contains_any", "value": ["business loan", "self employment", "enterprise", "रोजगार", "व्यवसाय", "उद्यम"], "required": false},
+      {"id": "pmegp-occupation", "field": "occupation", "op": "contains_any", "value": ["entrepreneur", "self employed", "shopkeeper", "business", "उद्यमी", "व्यवसाय"], "required": false}
+    ],
+    "verification_facts": ["new-unit and activity conditions", "project report, category, and location rules", "margin, subsidy, and lender appraisal"],
+    "required_documents": ["project and identity documents requested by the current implementing portal and lender"],
+    "caveat": "A PMEGP signal is not a subsidy or loan sanction; the implementing agency and lender decide under current guidelines and appraisal.",
+    "source": {"title": "PMEGP official portal", "url": "https://www.kviconline.gov.in/pmegpeportal/pmegphome/index.jsp", "last_verified": "2025-01-15", "freshness": "manual verification required; no live lookup", "official": true}
+  },
+  {
+    "id": "mudra",
+    "name_en": "Pradhan Mantri Mudra Yojana (PMMY)",
+    "name_hi": "प्रधानमंत्री मुद्रा योजना (PMMY)",
+    "summary_en": "Institutional credit route for eligible micro businesses and income-generating activities, subject to lender appraisal.",
+    "summary_hi": "पात्र सूक्ष्म व्यवसायों और आय-सृजन गतिविधियों के लिए संस्थागत ऋण मार्ग; ऋणदाता का मूल्यांकन लागू है।",
+    "ministry": "Department of Financial Services, Ministry of Finance",
+    "tags": ["micro business", "credit"],
+    "keywords": ["micro business", "working capital", "business loan", "shop", "व्यवसाय", "ऋण"],
+    "rules": [
+      {"id": "mudra-intent", "field": "needs", "op": "list_contains_any", "value": ["business loan", "working capital", "enterprise", "व्यवसाय ऋण", "व्यवसाय", "ऋण"], "required": false},
+      {"id": "mudra-occupation", "field": "occupation", "op": "contains_any", "value": ["shopkeeper", "vendor", "trader", "tailor", "driver", "service provider", "business", "दुकानदार", "विक्रेता"], "required": false}
+    ],
+    "verification_facts": ["business activity and loan purpose", "lender eligibility, credit history, and documents", "current product, limit, and repayment terms"],
+    "required_documents": ["business and identity documents requested by the participating lender"],
+    "caveat": "A profile match is not loan approval; participating lenders decide eligibility, amount, interest, and repayment under current rules.",
+    "source": {"title": "MUDRA official portal", "url": "https://www.mudra.org.in/", "last_verified": "2025-01-15", "freshness": "manual verification required; no live lookup", "official": true}
+  },
+  {
+    "id": "stand-up-india",
+    "name_en": "Stand-Up India",
+    "name_hi": "स्टैंड-अप इंडिया",
+    "summary_en": "Bank-loan facilitation for eligible SC/ST and women entrepreneurs starting a new enterprise, subject to lender appraisal.",
+    "summary_hi": "नई इकाई शुरू करने वाले पात्र SC/ST और महिला उद्यमियों के लिए बैंक ऋण सुविधा; ऋणदाता मूल्यांकन लागू है।",
+    "ministry": "Department of Financial Services, Ministry of Finance",
+    "tags": ["enterprise", "SC/ST", "credit"],
+    "keywords": ["SC", "ST", "woman entrepreneur", "greenfield", "business loan", "उद्यम", "व्यवसाय ऋण"],
+    "rules": [
+      {"id": "stand-up-age", "field": "age", "op": "gte", "value": 18, "required": true},
+      {"id": "stand-up-category", "field": "social_category", "op": "in", "value": ["SC", "ST", "sc", "st"], "required": false},
+      {"id": "stand-up-intent", "field": "needs", "op": "list_contains_any", "value": ["business loan", "enterprise", "greenfield business", "उद्यम", "व्यवसाय"], "required": false}
+    ],
+    "verification_facts": ["promoter category and ownership structure", "new enterprise and activity conditions", "project viability and lender appraisal"],
+    "required_documents": ["category, enterprise, and lender documents listed by the current official process"],
+    "caveat": "The available profile omits gender and ownership details; this is a discovery signal, not approval or a promise of credit.",
+    "source": {"title": "Stand-Up India official portal", "url": "https://www.standupmitra.in/", "last_verified": "2025-01-15", "freshness": "manual verification required; no live lookup", "official": true}
+  },
+  {
+    "id": "pmuy",
+    "name_en": "Pradhan Mantri Ujjwala Yojana (PMUY)",
+    "name_hi": "प्रधानमंत्री उज्ज्वला योजना (PMUY)",
+    "summary_en": "Clean cooking LPG connection support for eligible adult women in households meeting current programme conditions.",
+    "summary_hi": "वर्तमान कार्यक्रम शर्तें पूरी करने वाले परिवारों की पात्र वयस्क महिलाओं के लिए स्वच्छ खाना पकाने के LPG कनेक्शन की सहायता।",
+    "ministry": "Ministry of Petroleum & Natural Gas",
+    "tags": ["LPG", "clean cooking"],
+    "keywords": ["LPG", "cooking fuel", "gas connection", "उज्ज्वला", "रसोई गैस"],
+    "rules": [
+      {"id": "pmuy-adult", "field": "age", "op": "gte", "value": 18, "required": true},
+      {"id": "pmuy-need", "field": "needs", "op": "list_contains_any", "value": ["LPG", "cooking fuel", "gas connection", "रसोई गैस", "उज्ज्वला"], "required": false},
+      {"id": "pmuy-category", "field": "social_category", "op": "in", "value": ["SC", "ST", "EWS", "sc", "st", "ews"], "required": false}
+    ],
+    "verification_facts": ["adult woman applicant and household conditions", "existing LPG connection exclusion", "current beneficiary category and distributor process"],
+    "required_documents": ["identity, address, and household documents requested by the official distributor process"],
+    "caveat": "Gender, household, and connection facts are not captured here; confirm the current PMUY conditions and distributor process officially.",
+    "source": {"title": "PMUY official portal", "url": "https://www.pmuy.gov.in/", "last_verified": "2025-01-15", "freshness": "manual verification required; no live lookup", "official": true}
+  },
+  {
+    "id": "pmay-u-2",
+    "name_en": "Pradhan Mantri Awaas Yojana–Urban 2.0 (PMAY-U 2.0)",
+    "name_hi": "प्रधानमंत्री आवास योजना–शहरी 2.0 (PMAY-U 2.0)",
+    "summary_en": "Urban housing assistance for eligible households meeting current income, ownership, and housing conditions.",
+    "summary_hi": "वर्तमान आय, स्वामित्व और आवास शर्तें पूरी करने वाले पात्र शहरी परिवारों के लिए आवास सहायता।",
+    "ministry": "Ministry of Housing and Urban Affairs",
+    "tags": ["housing", "urban"],
+    "keywords": ["housing", "urban", "home", "rent", "आवास", "घर", "मकान"],
+    "rules": [
+      {"id": "pmay-u-need", "field": "needs", "op": "list_contains_any", "value": ["housing", "house", "home", "rent", "आवास", "घर", "मकान"], "required": false},
+      {"id": "pmay-u-category", "field": "social_category", "op": "in", "value": ["SC", "ST", "OBC", "EWS", "sc", "st", "obc", "ews"], "required": false},
+      {"id": "pmay-u-disability", "field": "disability", "op": "bool_true", "value": true, "required": false}
+    ],
+    "verification_facts": ["urban residence and household income", "existing house/ownership and prior-benefit conditions", "component, local-body, and application route"],
+    "required_documents": ["urban local-body and household documents; confirm the current component checklist"],
+    "caveat": "A housing need is not proof of selection; component, income, ownership, and local verification determine the official outcome.",
+    "source": {"title": "PMAY-Urban official portal", "url": "https://pmay-urban.gov.in/", "last_verified": "2025-01-15", "freshness": "manual verification required; no live lookup", "official": true}
+  },
+  {
+    "id": "nsap-igndps",
+    "name_en": "Indira Gandhi National Disability Pension Scheme (IGNDPS)",
+    "name_hi": "इंदिरा गांधी राष्ट्रीय दिव्यांग पेंशन योजना (IGNDPS)",
+    "summary_en": "A National Social Assistance Programme pension route for eligible persons with disabilities, subject to state and poverty-status conditions.",
+    "summary_hi": "पात्र दिव्यांग व्यक्तियों के लिए राष्ट्रीय सामाजिक सहायता कार्यक्रम की पेंशन; राज्य और गरीबी-स्थिति की शर्तें लागू हैं।",
+    "ministry": "Ministry of Rural Development",
+    "tags": ["pension", "disability"],
+    "keywords": ["disability pension", "pension", "दिव्यांग पेंशन", "विकलांग"],
+    "rules": [
+      {"id": "igndps-age-min", "field": "age", "op": "gte", "value": 18, "required": true},
+      {"id": "igndps-age-max", "field": "age", "op": "lte", "value": 79, "required": true},
+      {"id": "igndps-disability", "field": "disability", "op": "bool_true", "value": true, "required": true}
+    ],
+    "verification_facts": ["disability percentage and certificate requirements", "state-specific age, poverty, and pension rules", "whether another pension exclusion applies"],
+    "required_documents": ["state-accepted disability, age, residence, and bank documents; verify the current list"],
+    "caveat": "The boolean disability field is only a discovery signal; certification, state rules, household status, and the implementing authority decide eligibility.",
+    "source": {"title": "National Social Assistance Programme official portal", "url": "https://nsap.dord.gov.in/", "last_verified": "2025-01-15", "freshness": "manual verification required; no live lookup", "official": true}
+  },
+  {
+    "id": "adip",
+    "name_en": "Assistance to Persons with Disabilities for Aids and Appliances (ADIP)",
+    "name_hi": "दिव्यांगजनों के सहायक यंत्रों और उपकरणों के लिए सहायता (ADIP)",
+    "summary_en": "Assistance for eligible persons with disabilities to obtain approved aids and appliances through the current implementing network.",
+    "summary_hi": "वर्तमान कार्यान्वयन नेटवर्क के माध्यम से पात्र दिव्यांगजनों को स्वीकृत सहायक यंत्र और उपकरण प्राप्त करने की सहायता।",
+    "ministry": "Department of Empowerment of Persons with Disabilities",
+    "tags": ["disability", "assistive devices"],
+    "keywords": ["disability", "assistive device", "wheelchair", "hearing aid", "prosthetic", "सहायक उपकरण", "व्हीलचेयर"],
+    "rules": [
+      {"id": "adip-disability", "field": "disability", "op": "bool_true", "value": true, "required": true},
+      {"id": "adip-need", "field": "needs", "op": "list_contains_any", "value": ["assistive device", "wheelchair", "hearing aid", "prosthetic", "aids", "सहायक उपकरण", "व्हीलचेयर"], "required": false}
+    ],
+    "verification_facts": ["disability certificate and percentage", "income and device-specific conditions", "assessment, supplier, and camp availability"],
+    "required_documents": ["disability certificate and documents requested by the current implementing agency"],
+    "caveat": "Device eligibility and availability require official assessment; this profile cannot determine a device, amount, or distribution date.",
+    "source": {"title": "ADIP official portal", "url": "https://adip.depwd.gov.in/", "last_verified": "2025-01-15", "freshness": "manual verification required; no live lookup", "official": true}
+  },
+  {
+    "id": "pmmvy",
+    "name_en": "Pradhan Mantri Matru Vandana Yojana (PMMVY)",
+    "name_hi": "प्रधानमंत्री मातृ वंदना योजना (PMMVY)",
+    "summary_en": "Maternity benefit route for eligible pregnant and lactating women, subject to current conditions and local implementation.",
+    "summary_hi": "पात्र गर्भवती और स्तनपान कराने वाली महिलाओं के लिए मातृत्व लाभ का मार्ग; वर्तमान शर्तें और स्थानीय कार्यान्वयन लागू हैं।",
+    "ministry": "Ministry of Women & Child Development",
+    "tags": ["maternity", "women"],
+    "keywords": ["pregnancy", "maternity", "maternal benefit", "गर्भावस्था", "मातृत्व"],
+    "rules": [
+      {"id": "pmmvy-adult", "field": "age", "op": "gte", "value": 18, "required": true},
+      {"id": "pmmvy-need", "field": "needs", "op": "list_contains_any", "value": ["pregnancy", "maternity", "maternal benefit", "गर्भावस्था", "मातृत्व"], "required": false}
+    ],
+    "verification_facts": ["pregnancy, birth order, and current category conditions", "registration and required health/immunisation milestones", "local Anganwadi or implementing route"],
+    "required_documents": ["documents requested by the current Anganwadi or official application process"],
+    "caveat": "Gender and pregnancy are not captured in this profile; this is only a discovery prompt and not a maternity-benefit determination.",
+    "source": {"title": "PMMVY official portal", "url": "https://pmmvy.wcd.gov.in/", "last_verified": "2025-01-15", "freshness": "manual verification required; no live lookup", "official": true}
+  },
+  {
+    "id": "pmfme",
+    "name_en": "PM Formalisation of Micro Food Processing Enterprises (PMFME)",
+    "name_hi": "प्रधानमंत्री सूक्ष्म खाद्य प्रसंस्करण उद्यम औपचारिकीकरण योजना (PMFME)",
+    "summary_en": "Formalisation, training, and credit-linked support for eligible micro food-processing enterprises under current state implementation.",
+    "summary_hi": "वर्तमान राज्य कार्यान्वयन के अंतर्गत पात्र सूक्ष्म खाद्य-प्रसंस्करण उद्यमों के लिए औपचारिकीकरण, प्रशिक्षण और ऋण-लिंक्ड सहायता।",
+    "ministry": "Ministry of Food Processing Industries",
+    "tags": ["food processing", "micro enterprise"],
+    "keywords": ["food processing", "micro enterprise", "food business", "ODOP", "खाद्य प्रसंस्करण", "खाद्य व्यवसाय"],
+    "rules": [
+      {"id": "pmfme-adult", "field": "age", "op": "gte", "value": 18, "required": true},
+      {"id": "pmfme-need", "field": "needs", "op": "list_contains_any", "value": ["food processing", "micro enterprise", "business loan", "खाद्य प्रसंस्करण", "खाद्य व्यवसाय"], "required": false},
+      {"id": "pmfme-occupation", "field": "occupation", "op": "contains_any", "value": ["food processing", "baker", "pickle", "dairy", "food business", "खाद्य"], "required": false}
+    ],
+    "verification_facts": ["eligible food activity and state/ODOP alignment", "enterprise status and project contribution", "credit, training, and current state route"],
+    "required_documents": ["enterprise, project, and identity documents requested by the current state process"],
+    "caveat": "PMFME support varies by state and activity; a food-business signal is not subsidy or credit approval.",
+    "source": {"title": "PMFME official portal", "url": "https://pmfme.mofpi.gov.in/", "last_verified": "2025-01-15", "freshness": "manual verification required; no live lookup", "official": true}
+  },
+  {
+    "id": "pmjdy",
+    "name_en": "Pradhan Mantri Jan-Dhan Yojana (PMJDY)",
+    "name_hi": "प्रधानमंत्री जन-धन योजना (PMJDY)",
+    "summary_en": "Financial-inclusion account access and linked services for eligible individuals through participating banks and channels.",
+    "summary_hi": "भागीदार बैंकों और माध्यमों के जरिए पात्र व्यक्तियों के लिए वित्तीय समावेशन खाता और संबद्ध सेवाओं तक पहुंच।",
+    "ministry": "Department of Financial Services, Ministry of Finance",
+    "tags": ["banking", "financial inclusion"],
+    "keywords": ["bank account", "basic savings", "financial inclusion", "जन-धन", "बैंक खाता"],
+    "rules": [
+      {"id": "pmjdy-need", "field": "needs", "op": "list_contains_any", "value": ["bank account", "basic savings", "financial inclusion", "जन-धन", "बैंक खाता"], "required": false}
+    ],
+    "verification_facts": ["existing account status and bank availability", "current KYC and account-service conditions", "which linked benefit or insurance is needed"],
+    "required_documents": ["documents requested by the participating bank or official channel"],
+    "caveat": "This is a financial-inclusion discovery signal, not a guarantee of an account, overdraft, insurance, or any linked benefit.",
+    "source": {"title": "PMJDY official portal", "url": "https://pmjdy.gov.in/", "last_verified": "2025-01-15", "freshness": "manual verification required; no live lookup", "official": true}
   }
 ]

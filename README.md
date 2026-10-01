@@ -37,7 +37,7 @@ an official process.
 | Path | Purpose |
 | --- | --- |
 | `backend/` | FastAPI API, deterministic agent services, rule engine, bilingual copy |
-| `data/schemes.json` | Seven source-linked scheme records and screening rules |
+| `data/schemes.json` | 25 source-linked scheme records and screening rules |
 | `frontend/` | Responsive, bilingual, low-bandwidth judge-facing demo UI |
 | `tests/test_agent.py` | Safety, API, determinism, and rule-engine tests |
 | `evaluation/` | Realistic anonymised test personas and expected retrieval signals |

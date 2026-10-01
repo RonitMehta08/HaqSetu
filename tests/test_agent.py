@@ -18,14 +18,23 @@ def test_health_is_explicitly_demo_only() -> None:
     assert body["live_integrations"] is False
 
 
-def test_scheme_catalogue_has_six_or_more_official_sources() -> None:
+def test_scheme_catalogue_has_broad_official_coverage() -> None:
     response = client.get("/api/schemes?language=hi")
     assert response.status_code == 200
     body = response.json()
-    assert len(body["schemes"]) >= 6
+    assert len(body["schemes"]) >= 20
     assert all(item["source"]["official"] is True for item in body["schemes"])
+    assert len(body["schemes"]) == len({item["id"] for item in body["schemes"]})
     assert any("प्रधानमंत्री" in item["name"] for item in body["schemes"])
     assert body["live_lookup"] is False
+
+
+def test_analysis_returns_more_than_the_original_six_scheme_window() -> None:
+    response = client.post("/api/analyze", json={"demo": "farmer"})
+    assert response.status_code == 200
+    retrieved = response.json()["trace"]["retrieved_schemes"]
+    assert len(retrieved) == 12
+    assert all(item["source"]["official"] is True for item in retrieved)
 
 
 def test_demo_analysis_contains_evidence_trace_and_is_repeatable() -> None:

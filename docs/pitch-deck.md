@@ -47,7 +47,8 @@ Visual: annotated PM-KISAN card + counterfactual panel.
 ## Slide 5 — Working prototype and path to scale
 
 - FastAPI + Pydantic + replaceable scheme catalogue + vanilla accessible UI.
-- Seven real official source routes represented in a cautious prototype snapshot.
+- 25 official source routes represented in a cautious prototype snapshot, with
+  12 ranked results available per profile.
 - Automated tests for safety, determinism, citations, and retrieval.
 - Production path: signed source snapshots, freshness review, multilingual
   retrieval, facilitator mode, audited connectors with human confirmation.

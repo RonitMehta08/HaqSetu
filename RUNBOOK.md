@@ -8,7 +8,7 @@ root in PowerShell.
 - FastAPI agent API with deterministic retrieval and rule evaluation.
 - Single-page frontend served by the same FastAPI process.
 - English/Hindi switch and low-data visual mode.
-- Seven official-source-linked scheme records.
+- 25 official-source-linked scheme records, with the top 12 returned for each screening profile.
 - Rule-by-rule evidence, counterfactual prompts, action plan, and consent gate.
 - API tests and an evaluation harness with anonymised realistic personas.
 - Dockerfile and `agent-manifest.yaml` for the organiser's submission routes.

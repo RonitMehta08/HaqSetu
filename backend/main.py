@@ -28,8 +28,8 @@ FRONTEND_PATH = ROOT / "frontend"
 def load_schemes() -> list[dict[str, Any]]:
     with DATA_PATH.open("r", encoding="utf-8") as stream:
         data = json.load(stream)
-    if not isinstance(data, list) or len(data) < 6:
-        raise RuntimeError("data/schemes.json must contain at least six schemes")
+    if not isinstance(data, list) or len(data) < 20:
+        raise RuntimeError("data/schemes.json must contain at least twenty schemes")
     return data
 
 

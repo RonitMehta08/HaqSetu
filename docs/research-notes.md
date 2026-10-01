@@ -53,6 +53,6 @@ phrased as screening signals, not approvals.
    excludes it.
 4. **Language drift:** Hindi text needs native review before production. This
    prototype is a bilingual interaction proof, not a language certification.
-5. **Selection bias:** curated seven-scheme coverage is not a claim of complete
+5. **Selection bias:** curated 25-scheme coverage is not a claim of complete
    national coverage. A production version should ingest signed official source
    snapshots and report coverage.

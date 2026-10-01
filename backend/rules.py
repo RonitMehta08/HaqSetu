@@ -124,8 +124,8 @@ def evaluate_scheme(profile: Any, scheme: dict[str, Any]) -> dict[str, Any]:
     }
 
 
-def retrieve_schemes(profile: Any, schemes: Iterable[dict[str, Any]], limit: int = 6) -> list[dict[str, Any]]:
-    """Rank schemes using transparent profile/need keyword overlap."""
+def retrieve_schemes(profile: Any, schemes: Iterable[dict[str, Any]], limit: int = 12) -> list[dict[str, Any]]:
+    """Rank a broad set of schemes using transparent profile/need overlap."""
 
     occupation = _norm(_get(profile, "occupation"))
     needs = [_norm(item) for item in (_get(profile, "needs") or [])]

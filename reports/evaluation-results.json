@@ -1,6 +1,6 @@
 {
   "project": "HaqSetu",
-  "generated_at": "2026-10-01T08:58:08.289454+00:00",
+  "generated_at": "2026-10-01T10:48:00.610603+00:00",
   "case_count": 7,
   "metrics_percent": {
     "http_ok": 100.0,
@@ -19,54 +19,18 @@
       "http_ok": true,
       "retrieval_hit": true,
       "retrieved_ids": [
-        "nsap-ignoaps",
+        "adip",
+        "e-shram",
+        "kisan-credit-card",
+        "mgnrega",
+        "mudra",
+        "nsap-igndps",
         "pm-jay",
         "pm-kisan",
-        "pm-svanidhi",
-        "pmay-g",
-        "pmfby"
-      ],
-      "citation_coverage": true,
-      "evidence_coverage": true,
-      "counterfactual_coverage": true,
-      "schema_complete": true,
-      "safe_language": true,
-      "deterministic": true,
-      "readiness_score": 43
-    },
-    {
-      "id": "street_vendor_credit",
-      "label": "Urban street vendor seeking working capital",
-      "http_ok": true,
-      "retrieval_hit": true,
-      "retrieved_ids": [
-        "nsap-ignoaps",
-        "pm-jay",
-        "pm-kisan",
-        "pm-svanidhi",
-        "pmay-g",
-        "pmfby"
-      ],
-      "citation_coverage": true,
-      "evidence_coverage": true,
-      "counterfactual_coverage": true,
-      "schema_complete": true,
-      "safe_language": true,
-      "deterministic": true,
-      "readiness_score": 14
-    },
-    {
-      "id": "senior_pension",
-      "label": "Older agricultural worker asking about pension",
-      "http_ok": true,
-      "retrieval_hit": true,
-      "retrieved_ids": [
-        "nsap-ignoaps",
-        "pm-jay",
-        "pm-kisan",
-        "pm-svanidhi",
-        "pmay-g",
-        "pmfby"
+        "pm-kusum",
+        "pmfby",
+        "pmjjby",
+        "pmsby"
       ],
       "citation_coverage": true,
       "evidence_coverage": true,
@@ -77,17 +41,23 @@
       "readiness_score": 57
     },
     {
-      "id": "student_scholarship",
-      "label": "Low-income post-matric student",
+      "id": "street_vendor_credit",
+      "label": "Urban street vendor seeking working capital",
       "http_ok": true,
       "retrieval_hit": true,
       "retrieved_ids": [
+        "adip",
+        "e-shram",
+        "kisan-credit-card",
+        "mgnrega",
+        "mudra",
+        "nsap-igndps",
         "nsap-ignoaps",
         "pm-jay",
         "pm-kisan",
+        "pm-kusum",
         "pm-svanidhi",
-        "pmay-g",
-        "post-matric-scholarship"
+        "stand-up-india"
       ],
       "citation_coverage": true,
       "evidence_coverage": true,
@@ -95,7 +65,61 @@
       "schema_complete": true,
       "safe_language": true,
       "deterministic": true,
-      "readiness_score": 25
+      "readiness_score": 42
+    },
+    {
+      "id": "senior_pension",
+      "label": "Older agricultural worker asking about pension",
+      "http_ok": true,
+      "retrieval_hit": true,
+      "retrieved_ids": [
+        "adip",
+        "e-shram",
+        "kisan-credit-card",
+        "mgnrega",
+        "mudra",
+        "nsap-igndps",
+        "nsap-ignoaps",
+        "pm-jay",
+        "pm-kisan",
+        "pm-kusum",
+        "pm-svanidhi",
+        "pm-sym"
+      ],
+      "citation_coverage": true,
+      "evidence_coverage": true,
+      "counterfactual_coverage": true,
+      "schema_complete": true,
+      "safe_language": true,
+      "deterministic": true,
+      "readiness_score": 52
+    },
+    {
+      "id": "student_scholarship",
+      "label": "Low-income post-matric student",
+      "http_ok": true,
+      "retrieval_hit": true,
+      "retrieved_ids": [
+        "adip",
+        "e-shram",
+        "kisan-credit-card",
+        "mgnrega",
+        "mudra",
+        "nsap-igndps",
+        "nsap-ignoaps",
+        "pm-jay",
+        "pm-kisan",
+        "pm-kusum",
+        "post-matric-scholarship",
+        "stand-up-india"
+      ],
+      "citation_coverage": true,
+      "evidence_coverage": true,
+      "counterfactual_coverage": true,
+      "schema_complete": true,
+      "safe_language": true,
+      "deterministic": true,
+      "readiness_score": 26
     },
     {
       "id": "rural_housing",
@@ -103,12 +127,18 @@
       "http_ok": true,
       "retrieval_hit": true,
       "retrieved_ids": [
+        "adip",
+        "e-shram",
+        "kisan-credit-card",
+        "mgnrega",
+        "mudra",
+        "nsap-igndps",
         "nsap-ignoaps",
         "pm-jay",
         "pm-kisan",
-        "pm-svanidhi",
+        "pm-sym",
         "pmay-g",
-        "pmfby"
+        "pmay-u-2"
       ],
       "citation_coverage": true,
       "evidence_coverage": true,
@@ -116,7 +146,7 @@
       "schema_complete": true,
       "safe_language": true,
       "deterministic": true,
-      "readiness_score": 14
+      "readiness_score": 48
     },
     {
       "id": "hindi_healthcare",
@@ -124,12 +154,18 @@
       "http_ok": true,
       "retrieval_hit": true,
       "retrieved_ids": [
+        "adip",
+        "e-shram",
+        "kisan-credit-card",
+        "mgnrega",
+        "mudra",
+        "nsap-igndps",
         "nsap-ignoaps",
         "pm-jay",
         "pm-kisan",
+        "pm-kusum",
         "pm-svanidhi",
-        "pmay-g",
-        "pmfby"
+        "pm-sym"
       ],
       "citation_coverage": true,
       "evidence_coverage": true,
@@ -137,7 +173,7 @@
       "schema_complete": true,
       "safe_language": true,
       "deterministic": true,
-      "readiness_score": 10
+      "readiness_score": 30
     },
     {
       "id": "non_match_control",
@@ -145,12 +181,18 @@
       "http_ok": true,
       "retrieval_hit": true,
       "retrieved_ids": [
+        "adip",
+        "e-shram",
+        "kisan-credit-card",
+        "mgnrega",
+        "mudra",
+        "nsap-igndps",
         "nsap-ignoaps",
         "pm-jay",
         "pm-kisan",
+        "pm-kusum",
         "pm-svanidhi",
-        "pmay-g",
-        "pmfby"
+        "pm-sym"
       ],
       "citation_coverage": true,
       "evidence_coverage": true,
@@ -158,7 +200,7 @@
       "schema_complete": true,
       "safe_language": true,
       "deterministic": true,
-      "readiness_score": 10
+      "readiness_score": 22
     }
   ],
   "interpretation": "Offline regression metrics over anonymised realistic fixtures; not official eligibility accuracy."

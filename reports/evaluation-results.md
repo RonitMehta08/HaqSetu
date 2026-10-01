@@ -1,6 +1,6 @@
 # HaqSetu evaluation results
 
-Generated: `2026-10-01T08:58:08.289454+00:00`
+Generated: `2026-10-01T10:48:00.610603+00:00`
 
 > These are offline regression metrics over anonymised realistic test fixtures. They are not official eligibility accuracy.
 

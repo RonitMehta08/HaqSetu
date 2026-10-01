@@ -53,11 +53,11 @@ turn uncertainty into approval.
 
 ## Scope boundary for the hackathon
 
-The prototype uses seven central/portal records to demonstrate the agent loop:
-PM-KISAN, PMFBY, Ayushman Bharat PM-JAY, IGNOAPS/NSAP, PMAY-G, PM SVANidhi,
-and National Scholarship Portal post-matric catalogues. It deliberately does
-not perform live application submission, identity verification, payment, or
-official eligibility adjudication.
+The prototype uses a 25-record central/portal catalogue to demonstrate the
+agent loop across farming, health, pensions, housing, work, credit, insurance,
+education, disability, and maternity needs. It returns the top 12 transparent
+matches for a profile and deliberately does not perform live application
+submission, identity verification, payment, or official eligibility adjudication.
 
 ## Expected impact hypothesis
 
