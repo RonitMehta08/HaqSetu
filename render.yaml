@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: haqsetu
+    runtime: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    healthCheckPath: /api/health
+    autoDeploy: true

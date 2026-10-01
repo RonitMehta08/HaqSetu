@@ -1,8 +1,21 @@
 # Interactive testing configuration
 
 HaqSetu is ready for a buyer-testing form that sends JSON to an HTTP endpoint.
-Deploy the container behind a public HTTPS host first; the repository does not
-contain credentials or a hosting account.
+The repository includes a Render Blueprint (`render.yaml`) for the simplest
+public HTTPS deployment from GitHub. Render's free web service sleeps when idle,
+so use its Starter plan if buyers need consistently warm responses.
+
+## Recommended deployment: Render
+
+1. Sign in at <https://dashboard.render.com/> with the GitHub account that can
+   access `RonitMehta08/HaqSetu`.
+2. Choose **New → Blueprint** and select this repository and the `main` branch.
+3. Review the `haqsetu` web service from `render.yaml` and click **Apply**.
+4. Wait for the deploy to become live, then verify `GET /api/health`.
+5. Copy the generated `https://...onrender.com` host and append `/v1/run` below.
+
+Render provides HTTPS automatically. No API key or secret environment variable is
+needed for this deterministic service.
 
 ## Form values
 

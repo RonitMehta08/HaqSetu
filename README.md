@@ -145,6 +145,11 @@ PowerShell reports that `docker` is not recognized, Docker Desktop is not
 installed or is not available on PATH; the native Python setup above does not
 require Docker.
 
+For a public buyer-testing endpoint, the repository also includes `render.yaml`
+for a Render Blueprint deployment. After deployment, use
+`https://<render-service>.onrender.com/v1/run` with `POST`, JSON, and no
+authentication.
+
 ## GPU note for an RTX 4050 laptop
 
 No model training is required for the contest demo. The deterministic path is
