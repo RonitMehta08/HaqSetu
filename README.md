@@ -51,7 +51,10 @@ an official process.
 
 Requirements: Python 3.11+, PowerShell on Windows, and a browser.
 
+Run these commands from the repository root:
+
 ```powershell
+Set-Location D:\bharat_agentic_ai
 py -3.11 -m venv .venv
 .\.venv\Scripts\Activate.ps1
 python -m pip install -r backend\requirements.txt
@@ -60,6 +63,12 @@ python -m uvicorn backend.main:app --reload --port 8000
 
 Open <http://127.0.0.1:8000>. The same process serves the UI and the API.
 Swagger is at <http://127.0.0.1:8000/docs>.
+
+The health endpoint is `/api/health`, not `/health`:
+
+```powershell
+Invoke-RestMethod http://127.0.0.1:8000/api/health
+```
 
 Click **Small farmer**, **Street vendor**, **Senior citizen**, or **Student**,
 then **Analyze my options**. Toggle **हिं** to demonstrate bilingual output and
@@ -74,12 +83,15 @@ POST /api/analyze
 POST /api/feedback
 ```
 
-Example:
+PowerShell example:
 
 ```powershell
-curl.exe -X POST http://127.0.0.1:8000/api/analyze `
-  -H "Content-Type: application/json" `
-  -d '{"demo":"farmer"}'
+$body = @{ demo = "farmer" } | ConvertTo-Json -Compress
+Invoke-RestMethod `
+  -Uri "http://127.0.0.1:8000/api/analyze" `
+  -Method Post `
+  -ContentType "application/json" `
+  -Body $body
 ```
 
 The response contains `intake`, `retrieved_schemes`, `eligibility_evidence`,
@@ -100,7 +112,11 @@ The judge-facing interpretation is documented in `docs/evaluation.md`.
 
 ## Docker/API submission
 
+Docker is optional for local development. Install and start Docker Desktop
+before using these commands:
+
 ```powershell
+Set-Location D:\bharat_agentic_ai
 docker build -t haqsetu:demo .
 docker run --rm -p 8000:8000 haqsetu:demo
 ```
@@ -113,7 +129,10 @@ docker compose up --build
 
 The manifest is `agent-manifest.yaml`. Before submission, replace the local
 demo URL with the publicly reachable endpoint required by the organiser's
-submission flow and verify `GET /api/health` from outside the laptop.
+submission flow and verify `GET /api/health` from outside the laptop. If
+PowerShell reports that `docker` is not recognized, Docker Desktop is not
+installed or is not available on PATH; the native Python setup above does not
+require Docker.
 
 ## GPU note for an RTX 4050 laptop
 
