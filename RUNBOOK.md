@@ -95,6 +95,35 @@ docker compose up --build
 Do not claim a public endpoint until an external device can reach the host and
 the organiser's API/manifest submission flow accepts the exact contract.
 
+## 4b. Publish the public buyer-testing endpoint
+
+Recommended path is Vercel, because Render's free plan sleeps after 15 minutes
+and the marketplace test button can time out on the ~50 s cold start.
+
+```powershell
+npx vercel --prod
+```
+
+Then verify from outside the laptop:
+
+```powershell
+curl.exe https://YOUR_PUBLIC_HOST/api/health
+curl.exe -X POST https://YOUR_PUBLIC_HOST/v1/run `
+  -H "Content-Type: application/json" `
+  -d '{"demo":"farmer"}'
+```
+
+Also open `https://YOUR_PUBLIC_HOST/` in a browser and confirm the UI loads. If
+the page or its assets 404, widen `includeFiles` in `vercel.json`.
+
+Note that Vercel's free Hobby plan is licensed for non-commercial use only. For
+a free tier without that restriction, deploy the existing `Dockerfile` to
+Hugging Face Spaces or Google Cloud Run. `render.yaml` remains available as the
+Docker Blueprint fallback.
+
+The complete field-by-field form configuration is in
+`docs/interactive-testing.md`.
+
 ## 5. Optional static-frontend development mode
 
 Only use this if you want to edit the frontend independently:

@@ -46,6 +46,7 @@ an official process.
 | `RUNBOOK.md` | Exact manual commands for setup, demo, Docker, and optional GPU work |
 | `agent-manifest.yaml` | YAML submission manifest for the Docker/API route |
 | `Dockerfile` | Single-container API + static frontend deployment |
+| `vercel.json` | Serverless deployment for the public buyer-testing endpoint |
 
 ## Fastest local demo
 
@@ -145,10 +146,18 @@ PowerShell reports that `docker` is not recognized, Docker Desktop is not
 installed or is not available on PATH; the native Python setup above does not
 require Docker.
 
-For a public buyer-testing endpoint, the repository also includes `render.yaml`
-for a Render Blueprint deployment. After deployment, use
-`https://<render-service>.onrender.com/v1/run` with `POST`, JSON, and no
-authentication.
+For a public buyer-testing endpoint, the repository ships two deployment paths
+that serve the identical contract:
+
+- `vercel.json` + `api/index.py` — Python serverless function, ~300 ms cold
+  start. Recommended for buyer testing; run `npx vercel --prod`. The free Hobby
+  plan is licensed for non-commercial use only.
+- `render.yaml` — Docker Blueprint deployment. The free plan sleeps after 15
+  minutes idle, so the first request can take ~50 s.
+
+After deployment, use `https://<your-host>/v1/run` with `POST`, JSON, and no
+authentication. See [docs/interactive-testing.md](docs/interactive-testing.md)
+for the complete field-by-field form configuration.
 
 ## GPU note for an RTX 4050 laptop
 

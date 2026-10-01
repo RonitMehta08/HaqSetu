@@ -18,3 +18,10 @@ Thumbs.db
 dist/
 build/
 *.egg-info/
+video/node_modules/
+video/raw/
+video/narration.wav
+.vercel/
+
+.vercel
+.env*

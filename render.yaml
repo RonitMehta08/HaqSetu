@@ -3,7 +3,14 @@ services:
     name: haqsetu
     runtime: docker
     plan: free
+    region: singapore
     dockerfilePath: ./Dockerfile
     dockerContext: .
     healthCheckPath: /api/health
     autoDeploy: true
+    envVars:
+      # Public buyer-testing endpoint: no credentials, no cookies, read-only
+      # screening. Replace "*" with a comma-separated origin list to restrict
+      # which browser origins may call /v1/run.
+      - key: ALLOWED_ORIGINS
+        value: "*"

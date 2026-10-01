@@ -1,0 +1,5 @@
+# Runtime dependencies for the Vercel serverless deployment (api/index.py).
+# Vercel provides the ASGI server, so uvicorn is intentionally absent here.
+# Docker/Render and CI install the fuller backend/requirements.txt instead.
+fastapi>=0.115,<1
+pydantic>=2.7,<3

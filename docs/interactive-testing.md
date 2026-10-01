@@ -1,45 +1,121 @@
 # Interactive testing configuration
 
-HaqSetu is ready for a buyer-testing form that sends JSON to an HTTP endpoint.
-The repository includes a Render Blueprint (`render.yaml`) for the simplest
-public HTTPS deployment from GitHub. Render's free web service sleeps when idle,
-so use its Starter plan if buyers need consistently warm responses.
+HaqSetu exposes a public, deterministic, unauthenticated JSON endpoint at
+`POST /v1/run`. That is everything the buyer-testing form needs: no API key, no
+session handshake, and no streaming.
 
-## Recommended deployment: Render
+The repository ships two deployment paths. Both serve the identical contract.
+
+| | Vercel (`vercel.json`) | Render (`render.yaml`) |
+| --- | --- | --- |
+| Runtime | Python serverless function | Docker container |
+| Cold start | ~300 ms | ~50 s after 15 min idle |
+| Free tier | Hobby, **non-commercial use only** | Free, sleeps when idle |
+| Best for | Buyer testing, live demos | Container-parity submissions |
+
+**Recommended: Vercel.** The marketplace's *Test Endpoint* button and impatient
+buyers both time out on a sleeping Render free service. Vercel's cold start is
+fast enough that the first request simply works.
+
+**Licensing caveat you must decide on.** Vercel's Hobby plan is licensed for
+personal, non-commercial use. Demoing a hackathon prototype is fine; actively
+selling the product through a marketplace is commercial use and needs Vercel Pro
+($20/mo). If you want a free tier with no commercial restriction, deploy the
+existing `Dockerfile` to Hugging Face Spaces or Google Cloud Run instead — both
+reuse the container unchanged and neither sleeps per request.
+
+## Deploy to Vercel
+
+```bash
+npx vercel --prod
+```
+
+Or from the dashboard: **Add New → Project**, import
+`RonitMehta08/HaqSetu`, leave every build setting at its default, and deploy.
+`vercel.json` already routes all traffic to `api/index.py` and bundles the
+`data/` catalogue and `frontend/` assets into the function.
+
+No environment variables are required. `ALLOWED_ORIGINS` defaults to `*`, which
+is appropriate here because the endpoint accepts no credentials and sets no
+cookies. Set it to a comma-separated origin list if you later want to restrict
+browser access.
+
+## Deploy to Render (fallback)
 
 1. Sign in at <https://dashboard.render.com/> with the GitHub account that can
    access `RonitMehta08/HaqSetu`.
-2. Choose **New → Blueprint** and select this repository and the `main` branch.
+2. Choose **New → Blueprint**, select this repository and the `main` branch.
 3. Review the `haqsetu` web service from `render.yaml` and click **Apply**.
-4. Wait for the deploy to become live, then verify `GET /api/health`.
-5. Copy the generated `https://...onrender.com` host and append `/v1/run` below.
+4. Wait for the deploy to go live, then verify `GET /api/health`.
 
-Render provides HTTPS automatically. No API key or secret environment variable is
-needed for this deterministic service.
+Render's free plan sleeps after 15 minutes idle. Use the Starter plan if buyers
+need consistently warm responses.
+
+## Verify before publishing the URL
+
+Both checks must pass against the deployed host.
+
+```bash
+curl https://YOUR_PUBLIC_HOST/api/health
+```
+
+```bash
+curl -X POST https://YOUR_PUBLIC_HOST/v1/run -H "Content-Type: application/json" -d "{\"demo\":\"farmer\"}"
+```
+
+Health must return HTTP 200 with `status: ok`, `demo_mode: true`, and
+`live_integrations: false`. The run call must return a `trace` object containing
+`retrieved_schemes` and `citations`.
 
 ## Form values
 
-| Field | Value |
+| Form field | Value |
 | --- | --- |
-| Testing mode | API |
-| API endpoint mode | Yes |
+| Interactive Testing | **API** |
+| API Endpoint Mode | **Yes** |
 | Endpoint URL | `https://YOUR_PUBLIC_HOST/v1/run` |
-| HTTP method | `POST` |
-| Authentication | No authentication |
-| Input encoding | JSON body |
-| Response | JSON response |
-| Session request | No |
+| HTTP method | **POST** |
+| Authentication | **No authentication** |
+| How should aiKart send the inputs? | **JSON body** |
+| How does your endpoint respond? | **JSON response** |
+| Internal request fields | *leave empty* |
+| Needs a session request first | **No** |
 
-The endpoint is deterministic and does not require an API key. It accepts either
-a demo selector or a full profile. For the simplest buyer test, use:
+There is no `engine_name` or other internal field to inject, so leave the
+internal-request-fields JSON blank.
 
-```json
-{
-  "demo": "farmer"
-}
-```
+## Input fields
 
-For a real screening profile, send:
+Nine fields, within the 15-field limit. Names must match exactly; they are the
+JSON body keys.
+
+| # | Name | Type | Required | Example / default |
+| --- | --- | --- | --- | --- |
+| 1 | `state` | text | Yes | `Bihar` |
+| 2 | `age` | number | Yes | `42` |
+| 3 | `occupation` | text | Yes | `small farmer` |
+| 4 | `monthly_income` | number | Yes | `12000` |
+| 5 | `social_category` | text | Yes | `OBC` |
+| 6 | `landholding` | number | No | `0` |
+| 7 | `disability` | boolean | No | `false` |
+| 8 | `needs` | text | No | `income support, crop insurance` |
+| 9 | `language` | text | No | `en` |
+
+Notes for whoever fills the form:
+
+- `social_category` accepts `General`, `OBC`, `SC`, `ST`, `EWS`, or `Minority`.
+  Use a dropdown if the form supports one.
+- `needs` accepts either a comma-separated string or a JSON array. The API
+  normalises both.
+- `language` accepts only `en` or `hi`.
+- Optional fields may be submitted blank; the API falls back to the defaults
+  above rather than erroring.
+- `name` is deliberately **not** exposed. The rule engine never uses it and it
+  is excluded from logs, so there is no reason to collect it from buyers.
+- Do not add fields for Aadhaar, OTPs, bank details, document numbers, or any
+  credential. The endpoint neither needs nor accepts them.
+
+A minimal body that exercises the full trace:
 
 ```json
 {
@@ -55,44 +131,31 @@ For a real screening profile, send:
 }
 ```
 
-## Suggested input fields
+For the quickest possible smoke test, `{"demo": "farmer"}` also works and
+returns a fixed, repeatable report. Valid demo keys are `farmer`, `vendor_hi`,
+and `senior`.
 
-Add these fields to the buyer form (all are JSON body properties):
+## What buyers see in the result
 
-1. `state` — string, required
-2. `age` — number, required
-3. `occupation` — string, required
-4. `monthly_income` — number, required
-5. `social_category` — string, required
-6. `landholding` — number, optional, default `0`
-7. `disability` — boolean, optional, default `false`
-8. `needs` — array of strings, optional
-9. `language` — `en` or `hi`, optional, default `en`
+Map these response paths. The first three carry most of the product's value, so
+order them that way if the form preserves order.
 
-Do not collect Aadhaar, OTPs, bank passwords, document numbers, or credentials.
+| Response path | Suggested label |
+| --- | --- |
+| `trace.readiness_score` | Screening readiness (%) |
+| `trace.retrieved_schemes` | Matched schemes |
+| `trace.eligibility_evidence` | Rule-by-rule evidence |
+| `trace.missing_facts` | Facts still to verify |
+| `trace.counterfactuals` | What could change the result |
+| `trace.action_plan` | Recommended next steps |
+| `trace.citations` | Official sources |
+| `trace.consent_required` | Consent required before acting |
+| `trace.estimated_time_saved` | Estimated time saved |
+| `disclaimer` | Important disclaimer |
 
-## Suggested response mapping
+Always map `disclaimer`. The response is a preliminary screening report, and
+`readiness_score` is a completeness indicator, **not** a probability of
+approval. Official portals and departments remain the decision-makers.
 
-If the form supports field mapping, expose:
-
-- `trace.retrieved_schemes`
-- `trace.eligibility_evidence`
-- `trace.missing_facts`
-- `trace.action_plan`
-- `trace.citations`
-- `trace.readiness_score`
-- `disclaimer`
-
-The full JSON response is safe to show for initial testing. It is a screening
-report only; official portals and departments decide eligibility.
-
-## Smoke test after deployment
-
-```powershell
-curl.exe -X POST https://YOUR_PUBLIC_HOST/v1/run `
-  -H "Content-Type: application/json" `
-  -d '{"demo":"farmer"}'
-```
-
-The host must also return HTTP 200 from `GET /api/health` before publishing the
-endpoint URL to buyers.
+Leaving the form on *Showing full response* is also safe. The payload contains
+no secrets and no personal data beyond what the buyer typed.

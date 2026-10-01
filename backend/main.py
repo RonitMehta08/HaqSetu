@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import json
 import logging
+import os
 from pathlib import Path
 from typing import Any
 
@@ -75,6 +76,22 @@ DEMO_PROFILES: dict[str, dict[str, Any]] = {
 
 logging.basicConfig(level=logging.INFO, format="%(levelname)s %(name)s %(message)s")
 
+
+def allowed_origins() -> list[str]:
+    """Resolve browser origins permitted to call the API.
+
+    Hosted buyer-testing forms call /v1/run from their own origin, so the
+    deployed default is permissive. This is safe here because the endpoint
+    takes no credentials, sets no cookies, and only reads a local catalogue.
+    Set ALLOWED_ORIGINS to a comma-separated list to restrict it.
+    """
+
+    configured = os.getenv("ALLOWED_ORIGINS", "").strip()
+    if not configured:
+        return ["*"]
+    return [origin.strip() for origin in configured.split(",") if origin.strip()]
+
+
 app = FastAPI(
     title="HaqSetu API",
     version=__version__,
@@ -85,9 +102,9 @@ app = FastAPI(
 )
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000", "http://localhost:5173"],
+    allow_origins=allowed_origins(),
     allow_credentials=False,
-    allow_methods=["GET", "POST"],
+    allow_methods=["GET", "POST", "OPTIONS"],
     allow_headers=["*"],
 )
 

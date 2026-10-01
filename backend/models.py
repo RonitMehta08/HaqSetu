@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from typing import Any, Literal
 
-from pydantic import BaseModel, ConfigDict, Field, field_validator
+from pydantic import BaseModel, ConfigDict, Field, field_validator, model_validator
 
 
 class Profile(BaseModel):
@@ -42,13 +42,36 @@ class Profile(BaseModel):
             return value or None
         return value
 
+    @model_validator(mode="before")
+    @classmethod
+    def drop_blank_optionals(cls, data: Any) -> Any:
+        """Treat an untouched form input as "not supplied".
+
+        Hosted buyer-testing forms submit every declared field, sending "" for
+        the ones the tester left blank. Dropping those keys lets the declared
+        field defaults apply instead of failing validation.
+        """
+
+        if not isinstance(data, dict):
+            return data
+        optional = {"name", "landholding", "disability", "needs", "language"}
+        return {
+            key: value
+            for key, value in data.items()
+            if not (key in optional and isinstance(value, str) and not value.strip())
+        }
+
     @field_validator("needs", mode="before")
     @classmethod
     def normalize_needs(cls, value: Any) -> Any:
         if value is None:
             return []
+        if isinstance(value, str):
+            # Hosted buyer-testing forms render this as a single text input, so
+            # accept "income support, crop insurance" alongside a JSON array.
+            value = value.split(",")
         if not isinstance(value, list):
-            raise ValueError("needs must be a list of strings")
+            raise ValueError("needs must be a list of strings or a comma-separated string")
         return [item.strip() for item in value if isinstance(item, str) and item.strip()]
 
 

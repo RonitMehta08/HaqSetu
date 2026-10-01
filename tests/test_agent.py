@@ -3,6 +3,7 @@ from __future__ import annotations
 from fastapi.testclient import TestClient
 
 from backend.main import app
+from backend.models import Profile
 from backend.rules import evaluate_rule
 
 
@@ -90,6 +91,40 @@ def test_invalid_profile_is_rejected() -> None:
     response = client.post("/api/analyze", json={"demo": "does-not-exist"})
     assert response.status_code == 400
     response = client.post("/api/analyze", json={"state": "Bihar", "age": 20})
+    assert response.status_code == 422
+
+
+def test_hosted_form_submission_shape_is_accepted() -> None:
+    """A buyer-testing form posts strings and blanks, not typed JSON."""
+
+    payload = {
+        "state": "Bihar",
+        "age": "42",
+        "occupation": "small farmer",
+        "monthly_income": "12000",
+        "social_category": "OBC",
+        "landholding": "",
+        "disability": "",
+        "needs": "income support, crop insurance",
+        "language": "",
+    }
+    response = client.post("/v1/run", json=payload)
+    assert response.status_code == 200
+    body = response.json()
+    assert body["mode"] == "screening"
+    assert body["trace"]["intake"]["language"] == "en"
+
+    profile = Profile.model_validate(payload)
+    assert profile.age == 42
+    assert profile.monthly_income == 12000
+    assert profile.landholding == 0
+    assert profile.disability is False
+    assert profile.needs == ["income support", "crop insurance"]
+    assert profile.language == "en"
+
+
+def test_missing_required_field_still_fails_after_blank_stripping() -> None:
+    response = client.post("/v1/run", json={"state": "Bihar", "age": "", "occupation": ""})
     assert response.status_code == 422
 
 
