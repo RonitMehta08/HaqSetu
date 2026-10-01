@@ -37,6 +37,15 @@ def test_analysis_returns_more_than_the_original_six_scheme_window() -> None:
     assert all(item["source"]["official"] is True for item in retrieved)
 
 
+def test_versioned_marketplace_endpoint_matches_analysis_contract() -> None:
+    response = client.post("/v1/run", json={"demo": "farmer"})
+    assert response.status_code == 200
+    body = response.json()
+    assert body["mode"] == "demo"
+    assert len(body["trace"]["retrieved_schemes"]) == 12
+    assert body["trace"]["citations"]
+
+
 def test_demo_analysis_contains_evidence_trace_and_is_repeatable() -> None:
     first = client.post("/api/analyze", json={"demo": "farmer"})
     second = client.post("/api/analyze", json={"demo": "farmer"})

@@ -154,6 +154,18 @@ def analyze_endpoint(payload: dict[str, Any]) -> dict[str, Any]:
     return analyze(profile, SCHEMES, mode=mode)
 
 
+@app.post("/v1/run")
+def marketplace_run_endpoint(payload: dict[str, Any]) -> dict[str, Any]:
+    """Public buyer-testing alias with a stable versioned path.
+
+    The marketplace contract intentionally uses the same JSON body and response
+    as /api/analyze, while the original route remains available for the app and
+    backwards compatibility.
+    """
+
+    return analyze_endpoint(payload)
+
+
 @app.post("/api/feedback")
 def feedback_endpoint(payload: FeedbackRequest) -> dict[str, Any]:
     return feedback(payload.model_dump(exclude_none=True))

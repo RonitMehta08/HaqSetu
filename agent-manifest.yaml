@@ -9,7 +9,7 @@ domain: Citizen & GovTech
 entrypoint:
   type: http
   method: POST
-  path: /api/analyze
+  path: /v1/run
   health_path: /api/health
   port: 8000
 capabilities:

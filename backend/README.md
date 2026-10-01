@@ -25,6 +25,7 @@ The API is at <http://127.0.0.1:8000>; interactive docs are at
 * `GET /api/schemes?language=en|hi` — the seeded source-linked catalogue.
 * `POST /api/analyze` — accepts a bare profile, `{ "profile": { ... } }`, or
   `{ "demo": "farmer" }`, `{ "demo": "vendor_hi" }`, or `{ "demo": "senior" }`.
+* `POST /v1/run` — versioned marketplace/buyer-testing alias for `/api/analyze`.
 * `POST /api/feedback` — accepts anonymous `rating`, `helpful`, and optional
   short `comment`; feedback is acknowledged for the demo and not persisted.
 
@@ -35,6 +36,10 @@ curl.exe -X POST http://127.0.0.1:8000/api/analyze `
   -H "Content-Type: application/json" `
   -d '{"demo":"farmer"}'
 ```
+
+For an external buyer-testing form, use the same body against
+`https://<your-public-host>/v1/run` with `Content-Type: application/json` and no
+authentication.
 
 Example profile:
 

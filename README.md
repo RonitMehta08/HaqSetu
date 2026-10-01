@@ -80,6 +80,7 @@ expand rule evidence on any scheme card.
 GET  /api/health
 GET  /api/schemes?language=en|hi
 POST /api/analyze
+POST /v1/run
 POST /api/feedback
 ```
 
@@ -97,6 +98,16 @@ Invoke-RestMethod `
 The response contains `intake`, `retrieved_schemes`, `eligibility_evidence`,
 `missing_facts`, `counterfactuals`, `action_plan`, `citations`,
 `consent_required`, `readiness_score`, and time-saving telemetry.
+
+### Interactive testing / buyer endpoint
+
+Use `POST /v1/run` as the public JSON endpoint. It needs no authentication and
+accepts the same JSON body as `/api/analyze`; credentials must not be sent.
+For a buyer-testing form, choose API endpoint mode, HTTPS, `POST`, no
+authentication, JSON body, and JSON response. The endpoint returns the complete
+screening trace, so map `trace.retrieved_schemes`, `trace.eligibility_evidence`,
+`trace.action_plan`, and `trace.citations` if the form supports response-field
+mapping.
 
 ## Tests and evaluation
 
