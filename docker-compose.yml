@@ -1,0 +1,9 @@
+services:
+  haqsetu:
+    build: .
+    ports:
+      - "8000:8000"
+    read_only: true
+    security_opt:
+      - no-new-privileges:true
+    restart: "no"

@@ -1,0 +1,165 @@
+{
+  "project": "HaqSetu",
+  "generated_at": "2026-10-01T08:58:08.289454+00:00",
+  "case_count": 7,
+  "metrics_percent": {
+    "http_ok": 100.0,
+    "retrieval_hit": 100.0,
+    "citation_coverage": 100.0,
+    "evidence_coverage": 100.0,
+    "counterfactual_coverage": 100.0,
+    "schema_complete": 100.0,
+    "safe_language": 100.0,
+    "deterministic": 100.0
+  },
+  "cases": [
+    {
+      "id": "farmer_crop_support",
+      "label": "Small farmer seeking income and crop protection",
+      "http_ok": true,
+      "retrieval_hit": true,
+      "retrieved_ids": [
+        "nsap-ignoaps",
+        "pm-jay",
+        "pm-kisan",
+        "pm-svanidhi",
+        "pmay-g",
+        "pmfby"
+      ],
+      "citation_coverage": true,
+      "evidence_coverage": true,
+      "counterfactual_coverage": true,
+      "schema_complete": true,
+      "safe_language": true,
+      "deterministic": true,
+      "readiness_score": 43
+    },
+    {
+      "id": "street_vendor_credit",
+      "label": "Urban street vendor seeking working capital",
+      "http_ok": true,
+      "retrieval_hit": true,
+      "retrieved_ids": [
+        "nsap-ignoaps",
+        "pm-jay",
+        "pm-kisan",
+        "pm-svanidhi",
+        "pmay-g",
+        "pmfby"
+      ],
+      "citation_coverage": true,
+      "evidence_coverage": true,
+      "counterfactual_coverage": true,
+      "schema_complete": true,
+      "safe_language": true,
+      "deterministic": true,
+      "readiness_score": 14
+    },
+    {
+      "id": "senior_pension",
+      "label": "Older agricultural worker asking about pension",
+      "http_ok": true,
+      "retrieval_hit": true,
+      "retrieved_ids": [
+        "nsap-ignoaps",
+        "pm-jay",
+        "pm-kisan",
+        "pm-svanidhi",
+        "pmay-g",
+        "pmfby"
+      ],
+      "citation_coverage": true,
+      "evidence_coverage": true,
+      "counterfactual_coverage": true,
+      "schema_complete": true,
+      "safe_language": true,
+      "deterministic": true,
+      "readiness_score": 57
+    },
+    {
+      "id": "student_scholarship",
+      "label": "Low-income post-matric student",
+      "http_ok": true,
+      "retrieval_hit": true,
+      "retrieved_ids": [
+        "nsap-ignoaps",
+        "pm-jay",
+        "pm-kisan",
+        "pm-svanidhi",
+        "pmay-g",
+        "post-matric-scholarship"
+      ],
+      "citation_coverage": true,
+      "evidence_coverage": true,
+      "counterfactual_coverage": true,
+      "schema_complete": true,
+      "safe_language": true,
+      "deterministic": true,
+      "readiness_score": 25
+    },
+    {
+      "id": "rural_housing",
+      "label": "Rural household asking about housing support",
+      "http_ok": true,
+      "retrieval_hit": true,
+      "retrieved_ids": [
+        "nsap-ignoaps",
+        "pm-jay",
+        "pm-kisan",
+        "pm-svanidhi",
+        "pmay-g",
+        "pmfby"
+      ],
+      "citation_coverage": true,
+      "evidence_coverage": true,
+      "counterfactual_coverage": true,
+      "schema_complete": true,
+      "safe_language": true,
+      "deterministic": true,
+      "readiness_score": 14
+    },
+    {
+      "id": "hindi_healthcare",
+      "label": "Hindi-speaking family seeking hospital support",
+      "http_ok": true,
+      "retrieval_hit": true,
+      "retrieved_ids": [
+        "nsap-ignoaps",
+        "pm-jay",
+        "pm-kisan",
+        "pm-svanidhi",
+        "pmay-g",
+        "pmfby"
+      ],
+      "citation_coverage": true,
+      "evidence_coverage": true,
+      "counterfactual_coverage": true,
+      "schema_complete": true,
+      "safe_language": true,
+      "deterministic": true,
+      "readiness_score": 10
+    },
+    {
+      "id": "non_match_control",
+      "label": "Profile with no specific catalogue need",
+      "http_ok": true,
+      "retrieval_hit": true,
+      "retrieved_ids": [
+        "nsap-ignoaps",
+        "pm-jay",
+        "pm-kisan",
+        "pm-svanidhi",
+        "pmay-g",
+        "pmfby"
+      ],
+      "citation_coverage": true,
+      "evidence_coverage": true,
+      "counterfactual_coverage": true,
+      "schema_complete": true,
+      "safe_language": true,
+      "deterministic": true,
+      "readiness_score": 10
+    }
+  ],
+  "interpretation": "Offline regression metrics over anonymised realistic fixtures; not official eligibility accuracy."
+}

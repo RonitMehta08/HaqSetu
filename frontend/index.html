@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="HaqSetu is an evidence-first, multilingual navigator for discovering government benefit schemes.">
+  <meta name="theme-color" content="#f5f3ec">
+  <title>HaqSetu — Benefits, backed by evidence</title>
+  <link rel="icon" href="logo-mark.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="#top" aria-label="HaqSetu home">
+        <img src="logo-mark.svg" alt="" width="42" height="42">
+        <span class="brand-wordmark">Haq<span>Setu</span></span>
+        <span class="prototype-tag">Prototype</span>
+      </a>
+      <nav class="header-actions" aria-label="Display preferences">
+        <div class="language-switch" role="group" aria-label="Choose language">
+          <button type="button" class="language-option is-active" data-lang="en" aria-pressed="true">EN</button>
+          <button type="button" class="language-option" data-lang="hi" aria-pressed="false">हिं</button>
+        </div>
+        <button type="button" class="bandwidth-toggle" id="bandwidthToggle" aria-pressed="false" title="Reduce animation and visual effects">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 17v2M9.5 14v5M14.5 10v9M19 5v14"/></svg>
+          <span data-i18n="lowBandwidth">Low data</span>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <div id="top" class="hero-wrap">
+    <section class="hero" aria-labelledby="heroTitle">
+      <div class="hero-copy">
+        <div class="eyebrow"><span class="eyebrow-dot"></span><span data-i18n="eyebrow">Evidence-first benefits navigation</span></div>
+        <h1 id="heroTitle" data-i18n="heroTitle">Find the support you may be missing.</h1>
+        <p class="hero-lead" data-i18n="heroLead">Describe your situation once. HaqSetu screens government schemes, shows the evidence behind every signal, and gives you a clear next step.</p>
+        <div class="trust-row" aria-label="Product principles">
+          <span><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m5.5 10 3 3 6-6"/></svg><span data-i18n="officialSources">Official sources</span></span>
+          <span><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 2.5 16 5v4.5c0 3.6-2.5 6.7-6 8-3.5-1.3-6-4.4-6-8V5l6-2.5Z"/></svg><span data-i18n="privacyFirst">Privacy-first</span></span>
+          <span><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 4h12v9H9l-4 3v-3H4V4Z"/></svg><span data-i18n="bilingual">English + हिंदी</span></span>
+        </div>
+      </div>
+      <div class="hero-visual" aria-hidden="true">
+        <div class="visual-orbit orbit-one"></div>
+        <div class="visual-orbit orbit-two"></div>
+        <div class="bridge-card bridge-card-main">
+          <div class="mini-shield"><svg viewBox="0 0 24 24"><path d="m12 2 8 3.3v6c0 4.8-3.3 8.9-8 10.7-4.7-1.8-8-5.9-8-10.7v-6L12 2Z"/><path d="m8.5 12 2.3 2.3 4.8-5"/></svg></div>
+          <div><strong>6</strong><span>official schemes screened</span></div>
+        </div>
+        <div class="bridge-card bridge-card-source"><span class="pulse-dot"></span><div><strong>Source verified</strong><span>Evidence attached</span></div></div>
+        <div class="bridge-card bridge-card-time"><strong>23 min</strong><span>estimated time saved</span></div>
+      </div>
+    </section>
+  </div>
+
+  <main id="main" class="page-shell">
+    <section class="workspace" aria-label="Benefits screening workspace">
+      <div class="intake-card surface">
+        <div class="section-heading">
+          <div>
+            <span class="step-label" data-i18n="stepOne">Step 1 · Tell us about yourself</span>
+            <h2 data-i18n="profileHeading">Build your screening profile</h2>
+            <p data-i18n="profileSubhead">Only share broad facts needed to compare scheme criteria.</p>
+          </div>
+          <span class="required-note"><span aria-hidden="true">*</span> <span data-i18n="required">Required</span></span>
+        </div>
+
+        <div class="scenario-block">
+          <span class="micro-label" data-i18n="tryScenario">Try a sample profile</span>
+          <div class="scenario-list" role="group" aria-label="Quick sample profiles">
+            <button type="button" class="scenario-chip" data-scenario="farmer"><span>🌾</span><span data-i18n="farmerScenario">Small farmer</span></button>
+            <button type="button" class="scenario-chip" data-scenario="vendor"><span>🛒</span><span data-i18n="vendorScenario">Street vendor</span></button>
+            <button type="button" class="scenario-chip" data-scenario="senior"><span>🫶</span><span data-i18n="seniorScenario">Senior citizen</span></button>
+            <button type="button" class="scenario-chip" data-scenario="student"><span>🎓</span><span data-i18n="studentScenario">Student</span></button>
+          </div>
+        </div>
+
+        <form id="profileForm" novalidate>
+          <div class="form-grid">
+            <div class="field-group span-2">
+              <label for="name"><span data-i18n="nameLabel">Name</span> <span class="optional" data-i18n="optional">Optional</span></label>
+              <input id="name" name="name" type="text" maxlength="120" autocomplete="name" placeholder="How should we address you?" data-i18n-placeholder="namePlaceholder">
+              <span class="field-hint" data-i18n="nameHint">Not used for matching and never included in logs.</span>
+            </div>
+            <div class="field-group">
+              <label for="state"><span data-i18n="stateLabel">State / UT</span> <span aria-hidden="true">*</span></label>
+              <select id="state" name="state" required autocomplete="address-level1">
+                <option value="" selected disabled data-i18n="selectState">Select your state</option>
+                <option>Andhra Pradesh</option><option>Arunachal Pradesh</option><option>Assam</option><option>Bihar</option>
+                <option>Chhattisgarh</option><option>Delhi</option><option>Goa</option><option>Gujarat</option><option>Haryana</option>
+                <option>Himachal Pradesh</option><option>Jharkhand</option><option>Karnataka</option><option>Kerala</option>
+                <option>Madhya Pradesh</option><option>Maharashtra</option><option>Odisha</option><option>Punjab</option>
+                <option>Rajasthan</option><option>Tamil Nadu</option><option>Telangana</option><option>Uttar Pradesh</option>
+                <option>Uttarakhand</option><option>West Bengal</option><option>Other Union Territory</option>
+              </select>
+            </div>
+            <div class="field-group">
+              <label for="age"><span data-i18n="ageLabel">Age</span> <span aria-hidden="true">*</span></label>
+              <div class="input-suffix"><input id="age" name="age" type="number" min="0" max="120" inputmode="numeric" required placeholder="e.g. 42"><span data-i18n="years">years</span></div>
+            </div>
+            <div class="field-group">
+              <label for="occupation"><span data-i18n="occupationLabel">Occupation</span> <span aria-hidden="true">*</span></label>
+              <input id="occupation" name="occupation" type="text" maxlength="120" required placeholder="e.g. small farmer" data-i18n-placeholder="occupationPlaceholder">
+            </div>
+            <div class="field-group">
+              <label for="income"><span data-i18n="incomeLabel">Monthly household income</span> <span aria-hidden="true">*</span></label>
+              <div class="input-prefix"><span>₹</span><input id="income" name="monthly_income" type="number" min="0" max="100000000" step="100" inputmode="numeric" required placeholder="12,000"></div>
+            </div>
+            <div class="field-group">
+              <label for="category"><span data-i18n="categoryLabel">Social category</span> <span aria-hidden="true">*</span></label>
+              <select id="category" name="social_category" required>
+                <option value="" selected disabled data-i18n="selectCategory">Select category</option>
+                <option value="General">General</option><option value="EWS">EWS</option><option value="OBC">OBC</option>
+                <option value="SC">SC</option><option value="ST">ST</option><option value="Minority">Minority</option>
+                <option value="Prefer not to say">Prefer not to say</option>
+              </select>
+            </div>
+            <div class="field-group">
+              <label for="landholding"><span data-i18n="landLabel">Landholding</span> <span class="optional" data-i18n="optional">Optional</span></label>
+              <div class="input-suffix"><input id="landholding" name="landholding" type="number" min="0" max="1000000" step="0.1" inputmode="decimal" value="0"><span data-i18n="hectares">hectares</span></div>
+            </div>
+            <label class="check-card span-2" for="disability">
+              <input id="disability" name="disability" type="checkbox">
+              <span class="custom-check"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="m3 8 3 3 7-7"/></svg></span>
+              <span><strong data-i18n="disabilityLabel">Person with disability</strong><small data-i18n="disabilityHint">Include this only if relevant to the person seeking support.</small></span>
+            </label>
+            <div class="field-group span-2 needs-field">
+              <label for="needs"><span data-i18n="needsLabel">What support are you looking for?</span> <span aria-hidden="true">*</span></label>
+              <textarea id="needs" name="needs" rows="4" maxlength="500" required placeholder="Tell us in your own words — for example: I need help with crop insurance and healthcare for my family." data-i18n-placeholder="needsPlaceholder"></textarea>
+              <div class="textarea-meta"><span data-i18n="needsHint">Write naturally in English or Hindi. Separate multiple needs with commas.</span><span id="needCount" aria-live="polite">0 / 500</span></div>
+            </div>
+          </div>
+
+          <div class="privacy-note">
+            <div class="privacy-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 10V7a5 5 0 0 1 10 0v3M5 10h14v11H5V10Z"/><path d="M12 14v3"/></svg></div>
+            <div><strong data-i18n="privacyTitle">Your privacy is part of the design</strong><p data-i18n="privacyBody">Do not enter Aadhaar, bank details, OTPs, passwords, or document numbers. Broad profile facts are enough for this preliminary screening.</p></div>
+          </div>
+
+          <div id="formAlert" class="form-alert" role="alert" tabindex="-1" hidden></div>
+          <div class="form-actions">
+            <p><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 3v14M3 10h14"/></svg><span data-i18n="noSubmission">Screening only. Nothing is submitted to any department.</span></p>
+            <button id="analyzeButton" class="primary-button" type="submit">
+              <span class="button-label" data-i18n="analyze">Analyze my options</span>
+              <span class="button-spinner" aria-hidden="true"></span>
+              <svg class="button-arrow" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h12M11 5l5 5-5 5"/></svg>
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <aside class="trace-card surface" aria-labelledby="traceHeading">
+        <div class="trace-header">
+          <div><span class="live-label"><span></span><span data-i18n="agentTrace">Agent trace</span></span><h2 id="traceHeading" data-i18n="traceHeading">How HaqSetu reasons</h2></div>
+          <span id="traceElapsed" class="trace-elapsed">Ready</span>
+        </div>
+        <p class="trace-intro" data-i18n="traceIntro">A transparent, step-by-step screening — not a black-box decision.</p>
+        <ol class="agent-timeline" id="agentTimeline">
+          <li data-agent="intake">
+            <div class="timeline-marker"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h14v16H5zM8 8h8M8 12h8M8 16h5"/></svg></div>
+            <div class="timeline-copy"><div><strong data-i18n="intakeAgent">Intake agent</strong><span class="agent-status" data-i18n="waiting">Waiting</span></div><p data-i18n="intakeDesc">Structures only the profile facts needed for screening.</p></div>
+          </li>
+          <li data-agent="discovery">
+            <div class="timeline-marker"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.5 15.5 4 4"/></svg></div>
+            <div class="timeline-copy"><div><strong data-i18n="discoveryAgent">Scheme discovery</strong><span class="agent-status" data-i18n="waiting">Waiting</span></div><p data-i18n="discoveryDesc">Ranks relevant programmes from the seeded catalogue.</p></div>
+          </li>
+          <li data-agent="evidence">
+            <div class="timeline-marker"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v14H4zM8 9h8M8 13h5"/><path d="m15 16 2 2 4-5"/></svg></div>
+            <div class="timeline-copy"><div><strong data-i18n="evidenceAgent">Evidence checker</strong><span class="agent-status" data-i18n="waiting">Waiting</span></div><p data-i18n="evidenceDesc">Tests each rule and keeps unmatched evidence visible.</p></div>
+          </li>
+          <li data-agent="plan">
+            <div class="timeline-marker"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5 9 16l10-10M5 6h5M5 19h14"/></svg></div>
+            <div class="timeline-copy"><div><strong data-i18n="planAgent">Action planner</strong><span class="agent-status" data-i18n="waiting">Waiting</span></div><p data-i18n="planDesc">Builds a cautious next-step plan with official sources.</p></div>
+          </li>
+        </ol>
+        <div class="trace-principle">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 3.5 7.5 12 12l8.5-4.5L12 3ZM3.5 12 12 16.5l8.5-4.5M3.5 16.5 12 21l8.5-4.5"/></svg>
+          <p><strong data-i18n="deterministic">Deterministic by design</strong><span data-i18n="deterministicBody">The same profile produces the same explainable result.</span></p>
+        </div>
+      </aside>
+    </section>
+
+    <section id="results" class="results" aria-labelledby="resultsHeading" hidden>
+      <div class="results-title-row">
+        <div><span class="step-label" data-i18n="stepTwo">Step 2 · Your screening report</span><h2 id="resultsHeading" data-i18n="resultsHeading">A clearer path to your benefits</h2><p id="reportDisclaimer" class="report-disclaimer">Preliminary screening only. Official portals and departments remain authoritative.</p></div>
+        <span id="analysisId" class="analysis-id"></span>
+      </div>
+
+      <div class="readiness-card surface">
+        <div class="score-ring" id="scoreRing" role="img" aria-label="Readiness score 0 out of 100">
+          <div class="score-inner"><strong id="scoreValue">0</strong><span>/ 100</span></div>
+        </div>
+        <div class="readiness-copy">
+          <span class="micro-label" data-i18n="readiness">Profile readiness</span>
+          <h3 id="readinessTitle">Your profile is ready for screening</h3>
+          <p id="readinessNote">This measures screening completeness, not the probability of official approval.</p>
+          <div class="score-bar"><span id="scoreBar"></span></div>
+        </div>
+        <div class="impact-metrics">
+          <div><strong id="schemeCount">0</strong><span data-i18n="schemesReviewed">schemes reviewed</span></div>
+          <div><strong id="citationCount">0</strong><span data-i18n="sourcesAttached">official sources</span></div>
+          <div><strong id="timeSaved">0m</strong><span data-i18n="timeSaved">estimated saved</span></div>
+        </div>
+      </div>
+
+      <div class="report-grid">
+        <section class="matches-panel" aria-labelledby="matchesHeading">
+          <div class="panel-heading"><div><span class="micro-label" data-i18n="rankedMatches">Ranked matches</span><h3 id="matchesHeading" data-i18n="matchesHeading">Schemes worth checking</h3></div><span class="screening-badge" data-i18n="screeningOnly">Screening only</span></div>
+          <div id="schemeCards" class="scheme-cards"></div>
+        </section>
+
+        <aside class="plan-column">
+          <section class="action-card surface" aria-labelledby="actionHeading">
+            <div class="card-icon green"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5 9 16l10-10M5 6h5M5 19h14"/></svg></div>
+            <div class="side-card-heading"><span class="micro-label" data-i18n="recommended">Recommended</span><h3 id="actionHeading" data-i18n="actionHeading">Your action plan</h3></div>
+            <ol id="actionPlan" class="action-list"></ol>
+          </section>
+
+          <section class="missing-card surface" aria-labelledby="missingHeading">
+            <div class="card-icon amber"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 2.5 20h19L12 3Z"/><path d="M12 9v5M12 17v.2"/></svg></div>
+            <div class="side-card-heading"><span class="micro-label" data-i18n="counterfactual">Counterfactual check</span><h3 id="missingHeading" data-i18n="missingHeading">What could change the result?</h3></div>
+            <p class="missing-intro" data-i18n="missingIntro">These details need official verification and may change a scheme's status.</p>
+            <div id="missingFacts" class="missing-facts"></div>
+          </section>
+        </aside>
+      </div>
+
+      <section class="consent-card surface" aria-labelledby="consentHeading">
+        <div class="consent-copy">
+          <div class="card-icon blue"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 20 6v6c0 4.5-3.2 8.1-8 9.5C7.2 20.1 4 16.5 4 12V6l8-3Z"/><path d="M9 12.5 11 15l4.5-6"/></svg></div>
+          <div><span class="micro-label" data-i18n="consentLabel">You stay in control</span><h3 id="consentHeading" data-i18n="consentHeading">Review before taking action</h3><p id="consentText" data-i18n="consentBody">HaqSetu never submits an application. You can prepare a draft checklist only after confirming your consent.</p></div>
+        </div>
+        <div class="consent-action">
+          <label class="consent-check" for="consentCheck"><input type="checkbox" id="consentCheck"><span class="custom-check"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="m3 8 3 3 7-7"/></svg></span><span data-i18n="consentCheckbox">I understand this is guidance, and I consent to preparing a local draft.</span></label>
+          <button id="draftButton" class="secondary-button" type="button" disabled><span data-i18n="prepareDraft">Prepare draft checklist</span><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h12M11 5l5 5-5 5"/></svg></button>
+          <p class="consent-footnote" data-i18n="neverSubmit">No automatic submission · No credentials requested</p>
+        </div>
+        <div id="draftOutput" class="draft-output" hidden></div>
+      </section>
+
+      <section class="feedback-card" aria-labelledby="feedbackHeading">
+        <div><h3 id="feedbackHeading" data-i18n="feedbackHeading">Was this screening useful?</h3><p data-i18n="feedbackSubhead">Your anonymous feedback helps improve the prototype.</p></div>
+        <form id="feedbackForm">
+          <fieldset><legend class="sr-only">Helpfulness</legend><div class="helpful-buttons"><label><input type="radio" name="helpful" value="true" required><span>👍 <span data-i18n="yesHelpful">Yes, helpful</span></span></label><label><input type="radio" name="helpful" value="false"><span>👎 <span data-i18n="notYet">Not yet</span></span></label></div></fieldset>
+          <label class="feedback-comment"><span class="sr-only" data-i18n="feedbackComment">Optional feedback comment</span><input id="feedbackComment" type="text" maxlength="500" placeholder="Tell us what would make this better (optional)" data-i18n-placeholder="feedbackPlaceholder"></label>
+          <button type="submit" class="text-button" data-i18n="sendFeedback">Send feedback</button>
+        </form>
+        <p id="feedbackStatus" class="feedback-status" role="status" aria-live="polite"></p>
+      </section>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div><a class="brand footer-brand" href="#top"><img src="logo-mark.svg" alt="" width="32" height="32"><span>HaqSetu</span></a><p data-i18n="footerTagline">A bridge from questions to verified next steps.</p></div>
+    <p class="footer-disclaimer" data-i18n="footerDisclaimer">Prototype for preliminary screening. Government portals and departments remain authoritative.</p>
+  </footer>
+
+  <script src="app.js" defer></script>
+</body>
+</html>

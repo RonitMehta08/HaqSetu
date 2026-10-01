@@ -1,0 +1,35 @@
+name: haqsetu
+version: 0.1.0
+display_name: HaqSetu
+description: >-
+  Evidence-first, multilingual government-benefit screening agent for Bharat.
+  It ranks source-linked schemes, explains rule evidence, surfaces missing facts,
+  and creates a consent-gated checklist without submitting applications.
+domain: Citizen & GovTech
+entrypoint:
+  type: http
+  method: POST
+  path: /api/analyze
+  health_path: /api/health
+  port: 8000
+capabilities:
+  - understand_profile
+  - rank_official_scheme_catalogue
+  - evaluate_explainable_rules
+  - produce_citations
+  - identify_missing_facts
+  - generate_consent_gated_action_plan
+languages:
+  - en
+  - hi
+safety:
+  - preliminary_screening_only
+  - no_credential_collection
+  - no_automatic_submission
+  - official_source_verification_required
+runtime:
+  dockerfile: Dockerfile
+  command: python -m uvicorn backend.main:app --host 0.0.0.0 --port 8000
+submission_notes: >-
+  This prototype uses a deterministic local catalogue and rule engine. It does
+  not claim official eligibility or make live government API calls.

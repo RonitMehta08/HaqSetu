@@ -1,0 +1,121 @@
+[
+  {
+    "id": "farmer_crop_support",
+    "label": "Small farmer seeking income and crop protection",
+    "profile": {
+      "state": "Madhya Pradesh",
+      "age": 42,
+      "occupation": "small farmer",
+      "monthly_income": 12000,
+      "social_category": "OBC",
+      "landholding": 1.4,
+      "disability": false,
+      "needs": ["income support", "crop insurance", "health"],
+      "language": "en"
+    },
+    "expected_scheme_ids": ["pm-kisan", "pmfby"],
+    "requires_counterfactual": true
+  },
+  {
+    "id": "street_vendor_credit",
+    "label": "Urban street vendor seeking working capital",
+    "profile": {
+      "state": "Uttar Pradesh",
+      "age": 35,
+      "occupation": "street vendor",
+      "monthly_income": 15000,
+      "social_category": "SC",
+      "landholding": 0,
+      "disability": false,
+      "needs": ["working capital loan", "healthcare"],
+      "language": "en"
+    },
+    "expected_scheme_ids": ["pm-svanidhi"],
+    "requires_counterfactual": true
+  },
+  {
+    "id": "senior_pension",
+    "label": "Older agricultural worker asking about pension",
+    "profile": {
+      "state": "Rajasthan",
+      "age": 68,
+      "occupation": "agricultural worker",
+      "monthly_income": 8000,
+      "social_category": "General",
+      "landholding": 0,
+      "disability": true,
+      "needs": ["pension", "health"],
+      "language": "en"
+    },
+    "expected_scheme_ids": ["nsap-ignoaps", "pm-jay"],
+    "requires_counterfactual": true
+  },
+  {
+    "id": "student_scholarship",
+    "label": "Low-income post-matric student",
+    "profile": {
+      "state": "Bihar",
+      "age": 19,
+      "occupation": "student",
+      "monthly_income": 8000,
+      "social_category": "OBC",
+      "landholding": 0,
+      "disability": false,
+      "needs": ["post matric scholarship", "education"],
+      "language": "en"
+    },
+    "expected_scheme_ids": ["post-matric-scholarship"],
+    "requires_counterfactual": false
+  },
+  {
+    "id": "rural_housing",
+    "label": "Rural household asking about housing support",
+    "profile": {
+      "state": "Odisha",
+      "age": 31,
+      "occupation": "daily wage worker",
+      "monthly_income": 9000,
+      "social_category": "ST",
+      "landholding": 0,
+      "disability": false,
+      "needs": ["housing", "house repair"],
+      "language": "en"
+    },
+    "expected_scheme_ids": ["pmay-g"],
+    "requires_counterfactual": false
+  },
+  {
+    "id": "hindi_healthcare",
+    "label": "Hindi-speaking family seeking hospital support",
+    "profile": {
+      "state": "Uttar Pradesh",
+      "age": 46,
+      "occupation": "small shop worker",
+      "monthly_income": 11000,
+      "social_category": "General",
+      "landholding": 0,
+      "disability": false,
+      "needs": ["स्वास्थ्य", "अस्पताल"],
+      "language": "hi"
+    },
+    "expected_scheme_ids": ["pm-jay"],
+    "requires_counterfactual": true
+  },
+  {
+    "id": "non_match_control",
+    "label": "Profile with no specific catalogue need",
+    "profile": {
+      "state": "Goa",
+      "age": 28,
+      "occupation": "designer",
+      "monthly_income": 90000,
+      "social_category": "General",
+      "landholding": 0,
+      "disability": false,
+      "needs": ["general information"],
+      "language": "en"
+    },
+    "expected_scheme_ids": [],
+    "requires_counterfactual": false
+  }
+]

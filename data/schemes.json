@@ -1,0 +1,123 @@
+[
+  {
+    "id": "pm-kisan",
+    "name_en": "PM-KISAN",
+    "name_hi": "प्रधानमंत्री किसान सम्मान निधि (PM-KISAN)",
+    "summary_en": "Income support for eligible landholding farmer families, subject to exclusions and official verification.",
+    "summary_hi": "पात्र भूमिधारक किसान परिवारों के लिए आय सहायता; अपवर्जन और आधिकारिक सत्यापन लागू हैं।",
+    "ministry": "Ministry of Agriculture & Farmers Welfare",
+    "tags": ["farmer", "income support"],
+    "keywords": ["farmer", "agriculture", "किसान", "कृषि", "income"],
+    "rules": [
+      {"id": "farmer-occupation", "field": "occupation", "op": "contains_any", "value": ["farmer", "agricultur", "किसान", "कृषि"], "required": true},
+      {"id": "landholding-signal", "field": "landholding", "op": "gt", "value": 0, "required": true}
+    ],
+    "verification_facts": ["land record/ownership or cultivator record", "exclusion checks", "bank account seeded as required by the official process"],
+    "required_documents": ["state-accepted identity and land records; confirm the current list on the official portal"],
+    "caveat": "Landholding, exclusions, and payment details must be verified by the official PM-KISAN process; this screen does not establish entitlement.",
+    "source": {"title": "PM-KISAN official portal", "url": "https://pmkisan.gov.in/", "last_verified": "2025-01-15", "freshness": "manual verification required; no live lookup", "official": true}
+  },
+  {
+    "id": "pmfby",
+    "name_en": "Pradhan Mantri Fasal Bima Yojana (PMFBY)",
+    "name_hi": "प्रधानमंत्री फसल बीमा योजना (PMFBY)",
+    "summary_en": "Crop insurance for eligible notified crops and areas; enrolment windows and conditions vary by season and state.",
+    "summary_hi": "पात्र अधिसूचित फसलों और क्षेत्रों के लिए फसल बीमा; मौसम और राज्य के अनुसार समय-सीमा व शर्तें बदलती हैं।",
+    "ministry": "Ministry of Agriculture & Farmers Welfare",
+    "tags": ["farmer", "crop insurance"],
+    "keywords": ["farmer", "agriculture", "किसान", "फसल", "insurance", "बीमा"],
+    "rules": [
+      {"id": "cultivator-signal", "field": "occupation", "op": "contains_any", "value": ["farmer", "agricultur", "किसान", "कृषि"], "required": true}
+    ],
+    "verification_facts": ["crop and season", "notified area and crop", "cut-off date and enrolment channel", "cultivation/land or tenancy record"],
+    "required_documents": ["state and insurer documents listed for the current season"],
+    "caveat": "Coverage is tied to notified crops/areas and current season rules; confirm with the official portal or state notification.",
+    "source": {"title": "PMFBY official portal", "url": "https://pmfby.gov.in/", "last_verified": "2025-01-15", "freshness": "manual verification required; no live lookup", "official": true}
+  },
+  {
+    "id": "pm-jay",
+    "name_en": "Ayushman Bharat PM-JAY",
+    "name_hi": "आयुष्मान भारत प्रधानमंत्री जन आरोग्य योजना (PM-JAY)",
+    "summary_en": "Cashless hospitalisation cover for eligible households identified under the scheme and applicable state arrangements.",
+    "summary_hi": "योजना में पहचाने गए पात्र परिवारों और लागू राज्य व्यवस्था के लिए कैशलेस अस्पताल उपचार कवर।",
+    "ministry": "National Health Authority",
+    "tags": ["health", "hospitalisation"],
+    "keywords": ["health", "hospital", "medical", "स्वास्थ्य", "इलाज", "अस्पताल"],
+    "rules": [
+      {"id": "disability-support-signal", "field": "disability", "op": "bool_true", "value": true, "required": false}
+    ],
+    "verification_facts": ["household eligibility in the official beneficiary database", "state portability and package availability"],
+    "required_documents": ["officially accepted beneficiary identification; confirm current process"],
+    "caveat": "This profile alone cannot determine PM-JAY eligibility; use the official beneficiary search/help channel.",
+    "source": {"title": "Ayushman Bharat PM-JAY official portal", "url": "https://pmjay.gov.in/", "last_verified": "2025-01-15", "freshness": "manual verification required; no live lookup", "official": true}
+  },
+  {
+    "id": "nsap-ignoaps",
+    "name_en": "Indira Gandhi National Old Age Pension Scheme (IGNOAPS)",
+    "name_hi": "इंदिरा गांधी राष्ट्रीय वृद्धावस्था पेंशन योजना (IGNOAPS)",
+    "summary_en": "A National Social Assistance Programme pension route for eligible older people, with state and poverty-status conditions.",
+    "summary_hi": "पात्र वरिष्ठ नागरिकों के लिए राष्ट्रीय सामाजिक सहायता कार्यक्रम की पेंशन; राज्य और गरीबी-स्थिति की शर्तें लागू हैं।",
+    "ministry": "Ministry of Rural Development",
+    "tags": ["pension", "older persons"],
+    "keywords": ["pension", "senior", "old age", "पेंशन", "वृद्ध", "बुजुर्ग"],
+    "rules": [
+      {"id": "age-signal", "field": "age", "op": "gte", "value": 60, "required": true}
+    ],
+    "verification_facts": ["state-specific age and pension rules", "official poverty/household eligibility record", "whether another pension exclusion applies"],
+    "required_documents": ["state-accepted age, residence, and bank documents; verify current list"],
+    "caveat": "Age is only one screening signal; the state implementing authority decides eligibility and amount.",
+    "source": {"title": "National Social Assistance Programme official portal", "url": "https://nsap.nic.in/", "last_verified": "2025-01-15", "freshness": "manual verification required; no live lookup", "official": true}
+  },
+  {
+    "id": "pmay-g",
+    "name_en": "Pradhan Mantri Awaas Yojana–Gramin (PMAY-G)",
+    "name_hi": "प्रधानमंत्री आवास योजना–ग्रामीण (PMAY-G)",
+    "summary_en": "Rural housing assistance for households meeting the programme's housing deprivation and selection criteria.",
+    "summary_hi": "कार्यक्रम की आवास-वंचना और चयन शर्तें पूरी करने वाले ग्रामीण परिवारों के लिए आवास सहायता।",
+    "ministry": "Ministry of Rural Development",
+    "tags": ["housing", "rural"],
+    "keywords": ["housing", "house", "home", "rural", "आवास", "घर", "मकान"],
+    "rules": [
+      {"id": "housing-need-signal", "field": "needs", "op": "list_contains_any", "value": ["housing", "house", "home", "आवास", "घर", "मकान"], "required": false}
+    ],
+    "verification_facts": ["rural residence", "housing deprivation/household list status", "land and existing-house condition", "gram panchayat verification"],
+    "required_documents": ["local authority documents; confirm current state/gram panchayat process"],
+    "caveat": "A request for housing is not proof of PMAY-G selection; official survey/list and local verification control the decision.",
+    "source": {"title": "PMAY-G official portal", "url": "https://pmayg.nic.in/", "last_verified": "2025-01-15", "freshness": "manual verification required; no live lookup", "official": true}
+  },
+  {
+    "id": "pm-svanidhi",
+    "name_en": "PM Street Vendor's AtmaNirbhar Nidhi (PM SVANidhi)",
+    "name_hi": "प्रधानमंत्री स्ट्रीट वेंडर्स आत्मनिर्भर निधि (PM SVANidhi)",
+    "summary_en": "Working-capital loan support for eligible street vendors, subject to urban local body identification and current lending rules.",
+    "summary_hi": "पात्र स्ट्रीट वेंडरों के लिए कार्यशील पूंजी ऋण सहायता; शहरी स्थानीय निकाय की पहचान और वर्तमान ऋण शर्तें लागू हैं।",
+    "ministry": "Ministry of Housing and Urban Affairs",
+    "tags": ["street vendor", "credit"],
+    "keywords": ["vendor", "street", "hawker", "ठेला", "रेहड़ी", "विक्रेता", "loan", "ऋण"],
+    "rules": [
+      {"id": "vendor-occupation", "field": "occupation", "op": "contains_any", "value": ["street vendor", "vendor", "hawker", "ठेला", "रेहड़ी", "विक्रेता"], "required": true}
+    ],
+    "verification_facts": ["certificate of vending or letter of recommendation", "urban local body/market identification", "current loan tranche and repayment conditions"],
+    "required_documents": ["current lender/local-body documents; confirm the official process"],
+    "caveat": "A vendor occupation signal does not guarantee a loan; identification, lender assessment, and current programme rules apply.",
+    "source": {"title": "PM SVANidhi official portal", "url": "https://pmsvanidhi.mohua.gov.in/", "last_verified": "2025-01-15", "freshness": "manual verification required; no live lookup", "official": true}
+  },
+  {
+    "id": "post-matric-scholarship",
+    "name_en": "Post-Matric Scholarships (National Scholarship Portal)",
+    "name_hi": "दशमोत्तर छात्रवृत्तियां (नेशनल स्कॉलरशिप पोर्टल)",
+    "summary_en": "A catalogue of central/state post-matric scholarships; category, course, income, domicile, and deadline rules vary by scheme.",
+    "summary_hi": "केंद्रीय/राज्य दशमोत्तर छात्रवृत्तियों का पोर्टल; श्रेणी, पाठ्यक्रम, आय, निवास और समय-सीमा योजना के अनुसार बदलते हैं।",
+    "ministry": "Ministry of Electronics & Information Technology / participating departments",
+    "tags": ["education", "scholarship"],
+    "keywords": ["education", "student", "scholarship", "पढ़ाई", "छात्र", "छात्रवृत्ति"],
+    "rules": [
+      {"id": "category-signal", "field": "social_category", "op": "in", "value": ["SC", "ST", "OBC", "EWS", "minority", "दिव्यांग"], "required": false},
+      {"id": "income-signal", "field": "monthly_income", "op": "lte", "value": 50000, "required": false}
+    ],
+    "verification_facts": ["current course and post-matric status", "scheme-specific category/income ceiling", "domicile and institute verification", "application deadline"],
+    "required_documents": ["scheme-specific certificates and institute verification; confirm the current portal checklist"],
+    "caveat": "This is a catalogue match only; each listed scholarship has separate eligibility and verification rules.",
+    "source": {"title": "National Scholarship Portal", "url": "https://scholarships.gov.in/", "last_verified": "2025-01-15", "freshness": "manual verification required; no live lookup", "official": true}
+  }
+]

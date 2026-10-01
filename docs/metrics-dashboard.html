@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HaqSetu evaluation dashboard</title>
+  <style>
+    :root { color-scheme: light; --ink:#173d35; --muted:#657a73; --green:#1d806d; --pale:#e7f5ed; --line:#d6e4dc; }
+    * { box-sizing:border-box; } body { margin:0; padding:36px; background:#f6f8f3; color:var(--ink); font:15px/1.5 system-ui, sans-serif; }
+    main { max-width:980px; margin:auto; } h1 { margin:0 0 8px; font-size:34px; } .sub { color:var(--muted); margin:0 0 26px; }
+    .notice { padding:13px 16px; border:1px solid #e2d9b9; border-radius:12px; background:#fff8df; color:#71591c; }
+    .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:14px; margin-top:20px; }
+    .card { padding:18px; border:1px solid var(--line); border-radius:16px; background:white; box-shadow:0 8px 22px #264e4210; } .card h2 { margin:0; font-size:13px; color:var(--muted); font-weight:700; text-transform:uppercase; letter-spacing:.06em; } .score { margin-top:6px; font-size:32px; font-weight:800; }
+    .bar { height:9px; margin-top:12px; overflow:hidden; border-radius:9px; background:#e6eee9; } .bar span { display:block; height:100%; width:0; border-radius:inherit; background:linear-gradient(90deg,var(--green),#8fc967); }
+    table { width:100%; margin-top:24px; border-collapse:collapse; background:white; border:1px solid var(--line); border-radius:16px; overflow:hidden; } th,td { padding:11px 12px; border-bottom:1px solid #edf1ed; text-align:left; } th { color:var(--muted); font-size:12px; text-transform:uppercase; } .ok { color:var(--green); font-weight:700; } .bad { color:#b54d44; font-weight:700; }
+    code { padding:2px 5px; border-radius:5px; background:#edf4ef; } @media(max-width:600px){body{padding:20px}.grid{grid-template-columns:1fr 1fr}th,td{padding:8px 6px;font-size:12px}}
+  </style>
+</head>
+<body>
+  <main>
+    <h1>HaqSetu evaluation dashboard</h1>
+    <p class="sub">Run <code>python scripts/run_eval.py</code>, then open this file from the project server.</p>
+    <p id="notice" class="notice">Loading <code>reports/evaluation-results.json</code>…</p>
+    <section id="metrics" class="grid" aria-live="polite"></section>
+    <table><thead><tr><th>Case</th><th>Retrieval</th><th>Evidence</th><th>Counterfactual</th><th>Safe</th><th>Repeatable</th></tr></thead><tbody id="cases"></tbody></table>
+  </main>
+  <script>
+    const labels = { retrieval_hit:'Retrieval hit rate', citation_coverage:'Citation coverage', evidence_coverage:'Evidence coverage', counterfactual_coverage:'Counterfactual coverage', schema_complete:'Schema completeness', safe_language:'Safety-language coverage', deterministic:'Determinism' };
+    const tick = v => v ? '<span class="ok">PASS</span>' : '<span class="bad">FAIL</span>';
+    fetch('../reports/evaluation-results.json').then(r => r.json()).then(data => {
+      document.querySelector('#notice').textContent = `Generated ${data.generated_at} over ${data.case_count} anonymised realistic fixtures. These are regression metrics, not official eligibility accuracy.`;
+      document.querySelector('#metrics').innerHTML = Object.entries(data.metrics_percent).filter(([k]) => k !== 'http_ok').map(([key,value]) => `<article class="card"><h2>${labels[key] || key}</h2><div class="score">${value.toFixed(1)}%</div><div class="bar"><span style="width:${value}%"></span></div></article>`).join('');
+      document.querySelector('#cases').innerHTML = data.cases.map(row => `<tr><td>${row.id}</td><td>${tick(row.retrieval_hit)}</td><td>${tick(row.evidence_coverage)}</td><td>${tick(row.counterfactual_coverage)}</td><td>${tick(row.safe_language)}</td><td>${tick(row.deterministic)}</td></tr>`).join('');
+    }).catch(() => { document.querySelector('#notice').textContent = 'Run the evaluation command first. This page intentionally never invents scores.'; });
+  </script>
+</body>
+</html>
